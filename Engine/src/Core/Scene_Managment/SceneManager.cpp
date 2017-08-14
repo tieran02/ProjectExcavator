@@ -34,7 +34,9 @@ void SceneManager::ReloadScene() const
 	if (this->m_currentScene != nullptr)
 	{
 		this->m_currentScene->unload();
+		this->m_currentScene->GetSceneGraph().Destroy();
 		ResourceManager::Destroy();
+		ResourceManager::ShaderManagerInstance()->AddDefaultShaders();
 		this->m_currentScene->load();
 	}
 	else
@@ -46,6 +48,7 @@ void SceneManager::UnloadScene()
 	if (this->m_currentScene != nullptr)
 	{
 		this->m_currentScene->unload();
+		this->m_currentScene->GetSceneGraph().Destroy();
 		this->m_currentScene = nullptr;
 		ResourceManager::Destroy();
 	}

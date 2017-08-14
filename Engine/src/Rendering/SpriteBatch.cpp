@@ -48,7 +48,7 @@ void SpriteBatch::End() {
 	createRenderBatches();
 }
 
-void SpriteBatch::Draw(const char* name,float width, float height, float depth, Transform transform)
+void SpriteBatch::Draw(const char* name,float width, float height, float depth, Transform* transform)
 {
     m_sprites.emplace_back(name,width,height, depth,transform);
 }
@@ -103,7 +103,7 @@ void SpriteBatch::createRenderBatches() {
 	int currentVert = 0;
 
     m_batches.emplace_back(offset,6,m_spritePointers[0]->Texture()); // emplace firse sprite
-	Matrix4 transform = m_spritePointers[0]->GetTransform().TransformMatrix();
+	Matrix4 transform = m_spritePointers[0]->GetTransform()->TransformMatrix();
 
 	Vector2 size = Vector2(m_spritePointers[0]->Width(), m_spritePointers[0]->Height());
 	verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x/2 * size.x, vertices[0].Pos.y/2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[0].UV);
@@ -116,7 +116,7 @@ void SpriteBatch::createRenderBatches() {
 
 	for (int i = 1; i < m_spritePointers.size(); i++)
 	{	
-		transform = m_spritePointers[i]->GetTransform().TransformMatrix();
+		transform = m_spritePointers[i]->GetTransform()->TransformMatrix();
 		size = Vector2(m_spritePointers[i]->Width(), m_spritePointers[i]->Height());
 		if(m_spritePointers[i]->Texture()->GetTextureID() != m_spritePointers[i-1]->Texture()->GetTextureID())
 		{

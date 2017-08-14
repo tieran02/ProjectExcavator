@@ -30,13 +30,6 @@ Shader *ShaderManager::GetShader(const char *shaderName) {
 
 void ShaderManager::Destroy() {
 	if (this != nullptr) {
-		for (auto it = this->m_shaderMap.begin(); it != this->m_shaderMap.end();)
-		{
-			auto shader = it->second.GetProgramID();
-			Debug::Log(LogLevel::logINFO, static_cast<std::string>("Deleted shader - ") += it->first);
-			glDeleteProgram(shader);
-			it = this->m_shaderMap.erase(it);
-		}
 		this->m_shaderMap.clear();
 	}
 }

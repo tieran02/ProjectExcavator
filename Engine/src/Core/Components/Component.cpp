@@ -30,6 +30,7 @@ Component::Component(const char* name,bool unique)
 
 Component::~Component()
 {
+	Destroy();
 }
 
 void Component::Awake()

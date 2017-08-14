@@ -33,20 +33,11 @@ Texture2D *TextureManager::AddTexture(const char *path, const char* name) {
 		error.append("' alredy added");
 		Debug::Log(LogLevel::logWARNING, error);
 	}
-
-
     return nullptr;
 }
 
 void TextureManager::Destroy() {
 	if(this != nullptr){
-		for (auto it = this->m_textureMap.begin(); it != this->m_textureMap.end();)
-		{
-			const GLuint texture = it->second.GetTextureID();
-			Debug::Log(LogLevel::logINFO, static_cast<std::string>("Deleted texture - ") += it->first);
-			glDeleteTextures(1, &texture);
-			it = this->m_textureMap.erase(it);
-		}
 		this->m_textureMap.clear();
 	}
 }

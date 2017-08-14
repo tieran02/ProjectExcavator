@@ -12,6 +12,7 @@ class Shader
 public:
     Shader(){};
 	Shader(const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile);
+	~Shader();
 
     void CompileFromFile(const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile);
 

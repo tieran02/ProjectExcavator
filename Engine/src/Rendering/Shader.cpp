@@ -13,6 +13,11 @@ Shader::Shader(const char* vertexSourchPath, const char* fragmentSourcePath, boo
 	CompileFromFile(vertexSourchPath, fragmentSourcePath, isFile);
 }
 
+Shader::~Shader()
+{
+	glDeleteProgram(this->program);
+}
+
 void Shader::CompileFromFile(const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile) {
 	std::string vertexCode;
 	std::string fragmentCode;

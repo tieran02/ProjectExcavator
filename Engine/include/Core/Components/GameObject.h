@@ -37,4 +37,7 @@ private:
 	Transform* m_transform;
 
 	std::vector<GameObject*> m_children;
+
+	void deleteComponents();
+	void moveChildren();
 };

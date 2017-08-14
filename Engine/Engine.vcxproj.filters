@@ -165,8 +165,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="include\Rendering\Shaders\Sprite.vert" />
-    <None Include="include\Rendering\Shaders\Sprite.frag" />
-  </ItemGroup>
 </Project>

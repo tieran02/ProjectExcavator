@@ -71,14 +71,6 @@
     <ClInclude Include="include\Core\Scene_Management\Scene.h" />
     <ClInclude Include="include\Core\Scene_Management\SceneManager.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="include\Rendering\Shaders\Sprite.frag">
-      <DeploymentContent>false</DeploymentContent>
-    </None>
-    <None Include="include\Rendering\Shaders\Sprite.vert">
-      <DeploymentContent>false</DeploymentContent>
-    </None>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F58F2686-143C-4353-AA47-6F8724062AD3}</ProjectGuid>

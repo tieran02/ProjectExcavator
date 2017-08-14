@@ -17,7 +17,7 @@ Sprite::Sprite(const char *name, float width, float height, float depth) {
     Load(name,width,height,depth);
 }
 
-Sprite::Sprite(const char* name, float width, float height, float depth, Transform transform)
+Sprite::Sprite(const char* name, float width, float height, float depth, Transform* transform)
 {
 	Load(name, width, height,depth,transform);
 }
@@ -56,7 +56,7 @@ void Sprite::Load(const char *name, float width, float height) {
     this->m_height = height;
 }
 
-void Sprite::Load(const char* name, float width, float height, float depth, Transform transform)
+void Sprite::Load(const char* name, float width, float height, float depth, Transform* transform)
 {
 	this->m_texture = ResourceManager::TextureManagerInstance()->GetTexture(name);
 	this->m_width = width;

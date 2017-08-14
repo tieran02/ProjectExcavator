@@ -33,7 +33,7 @@ public:
     void Begin(SpriteSortType sortType = SpriteSortType::TEXTURE);
     void End();
 
-	void Draw(const char* name, float width, float height, float depth, Transform transform);
+	void Draw(const char* name, float width, float height, float depth, Transform* transform);
 
     void Render();
 private:

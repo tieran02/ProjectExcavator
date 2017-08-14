@@ -1,6 +1,7 @@
 .vs/
-Debug/
 Engine/Release/
-Project Excavator/Release/main.obj
-Release/res/pepe.jpg
+Project Excavator/Release/
 Release/
+/Debug/
+Engine/Debug/
+Project Excavator/Debug/

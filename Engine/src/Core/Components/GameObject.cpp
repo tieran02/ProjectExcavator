@@ -28,6 +28,7 @@ GameObject::GameObject(const char* name, unsigned id)
 
 GameObject::~GameObject()
 {
+	Destroy();
 }
 
 void GameObject::Create()
@@ -37,6 +38,8 @@ void GameObject::Create()
 
 void GameObject::Destroy()
 {
+	moveChildren();
+	deleteComponents();
 }
 
 Component* GameObject::AddComponent(Component* componenet)
@@ -50,9 +53,9 @@ Component* GameObject::FindComponentName(const char* name)
 {
 	for (auto it = this->m_components.begin(); it != this->m_components.end(); ++it)
 	{
-		if(static_cast<Component*>(*it)->GetName() == name)
+		if((*it)->GetName() == name)
 		{
-			return static_cast<Component*>(*it);
+			return *it;
 		}
 	}
 	return nullptr;
@@ -81,4 +84,19 @@ std::vector<GameObject*> GameObject::FindAllChildrenByName(const char* name)
 	return children;
 }
 
+void GameObject::moveChildren()
+{
+	for (auto it = this->m_children.begin(); it != this->m_children.end(); ++it)
+	{
+		(*it)->SetParent(nullptr);
+	}
+}
 
+void GameObject::deleteComponents()
+{
+	for (auto it = this->m_components.begin(); it != this->m_components.end(); ++it)
+	{
+		delete *it;
+	}
+	this->m_components.clear();
+}

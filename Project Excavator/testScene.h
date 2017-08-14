@@ -13,6 +13,6 @@ public:
 	void OnRender() override;
 private:
 	SpriteBatch spriteBatch;
-	Transform t1;
+	Transform* t1;
 };
 

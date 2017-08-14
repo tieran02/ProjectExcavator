@@ -6,7 +6,7 @@ class Texture2D {
 public:
     Texture2D(){};
 	Texture2D(const char* directory);
-    ~Texture2D(){};
+	~Texture2D();
     void Bind();
     void Unbind();
     void CreateTextureFromFile(const char* directory);

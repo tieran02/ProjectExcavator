@@ -59,14 +59,7 @@ void SceneGraph::Destroy()
 	//Delete all gameobjects and components attached to them
 	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
 	{
-		GameObject* game_object = it->second;
-
-		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
-		{
-			delete static_cast<Component*>(*it1);
-		}
-		game_object->m_components.clear();
-		delete static_cast<GameObject*>(it->second);
+		delete it->second;
 	}
 	m_gameobjects.clear();
 }
@@ -78,7 +71,7 @@ void SceneGraph::Awake()
 		GameObject* game_object = it->second;
 		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
 		{
-			static_cast<Component*>(*it1)->Awake();
+			(*it1)->Awake();
 		}
 	}
 }
@@ -90,7 +83,7 @@ void SceneGraph::Start()
 		GameObject* game_object = it->second;
 		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
 		{
-			static_cast<Component*>(*it1)->Start();
+			(*it1)->Start();
 		}
 	}
 }
@@ -102,7 +95,7 @@ void SceneGraph::FixedUpdate()
 		GameObject* game_object = it->second;
 		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
 		{
-			static_cast<Component*>(*it1)->FixedUpdate();
+			(*it1)->FixedUpdate();
 		}
 	}
 }
@@ -114,7 +107,7 @@ void SceneGraph::Update()
 		GameObject* game_object = it->second;
 		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
 		{
-			static_cast<Component*>(*it1)->Update();
+			(*it1)->Update();
 		}
 	}
 }
@@ -126,7 +119,7 @@ void SceneGraph::LateUpdate()
 		GameObject* game_object = it->second;
 		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
 		{
-			static_cast<Component*>(*it1)->LateUpdate();
+			(*it1)->LateUpdate();
 		}
 	}
 }

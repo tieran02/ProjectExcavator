@@ -9,7 +9,7 @@ public:
     virtual ~Game();
 
 	virtual void OnInitialise() {};
-	virtual void OnUpdate() {};
+	virtual void OnUpdate(){};
 	virtual void OnRender() {};
 
     void Destroy();

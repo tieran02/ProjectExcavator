@@ -50,6 +50,7 @@
     <ClInclude Include="include\Core\InputMarcros.h" />
     <ClInclude Include="include\Core\Scene_Management\SceneGraph.h" />
     <ClInclude Include="include\Core\Components\Transform.h" />
+    <ClInclude Include="include\Core\Time.h" />
     <ClInclude Include="include\Core\Vertex.h" />
     <ClInclude Include="include\Core\Window.h" />
     <ClInclude Include="include\Debug\Debug.h" />

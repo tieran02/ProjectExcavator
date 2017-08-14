@@ -4,8 +4,11 @@
 #include <Math/Math.h>
 #include "Resources/ResourceManager.h"
 #include "Core/Scene_Management/SceneManager.h"
+#include "Core/Time.h"
 
 Game* Game::m_instance = 0;
+double Time::DeltaTime = 0;
+double Time::ElpasedTime = 0;
 
 Game::Game(int width, int height, const char *title) {
     this->create(width,height,title);
@@ -42,13 +45,16 @@ int Game::create(int width, int height, const char *title) {
 }
 
 
-Quaternion q1;
+double last = 0;
 void Game::loop() {
     while(m_isRunning){
         if(m_window.ShouldClose() || Input::KeyPress(KEY_ESCAPE)){
             m_isRunning = false;
             return;
         }
+		last = Time::ElpasedTime;
+		Time::ElpasedTime = glfwGetTime();
+
 		this->OnUpdate();
 		SceneManager::Instance()->UpdateScene();
 
@@ -59,6 +65,7 @@ void Game::loop() {
 		SceneManager::Instance()->RenderScene();
 
         this->m_window.Refresh();
+		Time::DeltaTime = Time::ElpasedTime - last;
     }
 }
 

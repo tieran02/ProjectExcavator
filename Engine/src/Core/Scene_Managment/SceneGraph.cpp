@@ -126,7 +126,14 @@ void SceneGraph::LateUpdate()
 
 void SceneGraph::Render()
 {
-
+	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
+	{
+		GameObject* game_object = it->second;
+		for (auto it1 = game_object->m_components.begin(); it1 != game_object->m_components.end(); ++it1)
+		{
+			(*it1)->Render();
+		}
+	}
 }
 
 void SceneGraph::DestroyGameobject(GameObject* gameObject)

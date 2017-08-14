@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Core\Scene_Managment\SceneManager.cpp" />
     <ClCompile Include="src\Core\Components\Component.cpp" />
     <ClCompile Include="src\Core\Components\GameObject.cpp" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <ClInclude Include="include\Core\Components\Component.h" />
     <ClInclude Include="include\Core\Components\GameObject.h" />
+    <ClInclude Include="include\Core\Components\SpriteRenderer.h" />
     <ClInclude Include="include\Core\Game.h" />
     <ClInclude Include="include\Core\Input.h" />
     <ClInclude Include="include\Core\InputMarcros.h" />

@@ -8,7 +8,10 @@
 class Transform : public Component{
 
 public:
-	Transform() : Component("Transform", true){}
+	Transform() : Component("Transform", true)
+	{
+		m_scale = Vector3(1, 1, 1);
+	}
 
     Matrix4 TransformMatrix() const;
     const Matrix4 & TranslationMatrix() const;

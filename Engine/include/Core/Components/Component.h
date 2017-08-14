@@ -13,6 +13,7 @@ public:
 	virtual void FixedUpdate();
 	virtual void Update(){};
 	virtual void LateUpdate();
+	virtual void Render();
 	virtual void Destroy();
 
 	void SetGameObject(GameObject* game_object)

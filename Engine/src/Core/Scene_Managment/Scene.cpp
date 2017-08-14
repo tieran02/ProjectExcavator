@@ -6,6 +6,7 @@ Scene::Scene(const char* name) {
 
 void Scene::load() {
 	this->OnLoad();
+	m_spriteBatch.Init();
 	m_sceneGrapth.Awake();
 	m_sceneGrapth.Start();
 }
@@ -33,7 +34,10 @@ void Scene::lateUpdate()
 }
 
 void Scene::render() {
+	m_spriteBatch.Begin();
 	this->OnRender();
 	m_sceneGrapth.Render();
+	m_spriteBatch.End();
+	m_spriteBatch.Render();
 
 }

@@ -48,9 +48,9 @@ void SpriteBatch::End() {
 	createRenderBatches();
 }
 
-void SpriteBatch::Draw(const char* name,float width, float height, float depth, Transform* transform)
+void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform)
 {
-    m_sprites.emplace_back(name,width,height, depth,transform);
+    m_sprites.emplace_back(sprite, depth,transform);
 }
 
 void SpriteBatch::Render() {
@@ -102,36 +102,36 @@ void SpriteBatch::createRenderBatches() {
 	int offset = 0;
 	int currentVert = 0;
 
-    m_batches.emplace_back(offset,6,m_spritePointers[0]->Texture()); // emplace firse sprite
-	Matrix4 transform = m_spritePointers[0]->GetTransform()->TransformMatrix();
+    m_batches.emplace_back(offset,6,m_spritePointers[0]->Sprite->Texture()); // emplace firse sprite
+	Matrix4 transform = m_spritePointers[0]->Transform->TransformMatrix();
 
-	Vector2 size = Vector2(m_spritePointers[0]->Width(), m_spritePointers[0]->Height());
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x/2 * size.x, vertices[0].Pos.y/2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[0].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[1].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[2].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[3].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[4].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[0]->Depth(), 1)).XYZ(), vertices[5].UV);
+	Vector2 size = Vector2(m_spritePointers[0]->Sprite->Width(), m_spritePointers[0]->Sprite->Height());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x/2 * size.x, vertices[0].Pos.y/2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[0].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[1].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[2].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[3].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[4].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[5].UV);
 	offset += 6;
 
 	for (int i = 1; i < m_spritePointers.size(); i++)
 	{	
-		transform = m_spritePointers[i]->GetTransform()->TransformMatrix();
-		size = Vector2(m_spritePointers[i]->Width(), m_spritePointers[i]->Height());
-		if(m_spritePointers[i]->Texture()->GetTextureID() != m_spritePointers[i-1]->Texture()->GetTextureID())
+		transform = m_spritePointers[i]->Transform->TransformMatrix();
+		size = Vector2(m_spritePointers[i]->Sprite->Width(), m_spritePointers[i]->Sprite->Height());
+		if(m_spritePointers[i]->Sprite->Texture()->GetTextureID() != m_spritePointers[i-1]->Sprite->Texture()->GetTextureID())
 		{
-			m_batches.emplace_back(offset, 6, m_spritePointers[i]->Texture()); // if texture is differnt
+			m_batches.emplace_back(offset, 6, m_spritePointers[i]->Sprite->Texture()); // if texture is differnt
 		}
 		else
 		{
 			m_batches.back().VertexCount += 6;
 		}
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x / 2 * size.x, vertices[0].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[0].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[1].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[2].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[3].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[4].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[i]->Depth(), 1)).XYZ(), vertices[5].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x / 2 * size.x, vertices[0].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[0].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[1].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[2].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[3].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[4].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[5].UV);
 		offset += 6;
 
 	}
@@ -156,13 +156,13 @@ void SpriteBatch::sortSprites() {
     }
 }
 
-bool SpriteBatch::compareFrontToBack(Sprite *a, Sprite *b) {
-    return (a->Depth() < b->Depth() );
+bool SpriteBatch::compareFrontToBack(glyph *a, glyph *b) {
+    return (a->Depth < b->Depth );
 }
 
-bool SpriteBatch::compareBackToBack(Sprite *a, Sprite *b) {
-    return (a->Depth() > b->Depth() );}
+bool SpriteBatch::compareBackToBack(glyph *a, glyph *b) {
+    return (a->Depth > b->Depth );}
 
-bool SpriteBatch::compareTexture(Sprite *a, Sprite *b) {
-    return (a->Texture()->GetTextureID() < b->Texture()->GetTextureID() );
+bool SpriteBatch::compareTexture(glyph *a, glyph *b) {
+    return (a->Sprite->Texture()->GetTextureID() < b->Sprite->Texture()->GetTextureID() );
 }

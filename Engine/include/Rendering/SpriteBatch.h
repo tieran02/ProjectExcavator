@@ -33,23 +33,32 @@ public:
     void Begin(SpriteSortType sortType = SpriteSortType::TEXTURE);
     void End();
 
-	void Draw(const char* name, float width, float height, float depth, Transform* transform);
+	void Draw(Sprite* sprite, float depth, Transform* transform);
 
     void Render();
 private:
+
+	struct glyph
+	{
+		glyph(Sprite* sprite, float depth, Transform* transform) : Sprite(sprite), Depth(depth), Transform(transform){}
+		Sprite* Sprite;
+		float Depth;
+		Transform* Transform;
+	};
+
     GLuint m_vbo;
     GLuint m_vao;
 
     SpriteSortType m_sortType;
-	std::vector<Sprite*> m_spritePointers; //sorting
-    std::vector<Sprite> m_sprites; //values
+	std::vector<glyph*> m_spritePointers; //sorting
+    std::vector<glyph> m_sprites; //values
     std::vector<RenderBatch> m_batches;
 
     void createRenderBatches();
     void createVAO();
     void sortSprites();
 
-    static bool compareFrontToBack(Sprite* a, Sprite* b);
-    static bool compareBackToBack(Sprite* a, Sprite* b);
-    static bool compareTexture(Sprite* a, Sprite* b);
+    static bool compareFrontToBack(glyph* a, glyph* b);
+    static bool compareBackToBack(glyph* a, glyph* b);
+    static bool compareTexture(glyph* a, glyph* b);
 };

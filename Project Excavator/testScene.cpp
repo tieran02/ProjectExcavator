@@ -3,17 +3,25 @@
 #include "Core/Game.h"
 #include "Core/Scene_Management/SceneManager.h"
 #include "Core/Input.h"
+#include "Core/Components/SpriteRenderer.h"
 
 
 void testScene::OnLoad()
 {
 	ResourceManager::TextureManagerInstance()->AddTexture("./res/pepe.jpg", "pepe");
-	spriteBatch.Init();
 
-	GameObject* game_object = GetSceneGraph().AddGameObject("Camera");
-	Camera* cam = static_cast<Camera*>(game_object->AddComponent(new Camera));
-	t1 = static_cast<Transform*>(game_object->FindComponentName("Transform"));
+	GameObject* camera = GetSceneGraph().AddGameObject("Camera");
+	Camera* cam = static_cast<Camera*>(camera->AddComponent(new Camera));
 	cam->SetMain();
+
+	pepe.Load("pepe", 256, 256);
+
+	GameObject* game_object = GetSceneGraph().AddGameObject("pepe");
+	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch())));
+	sprite_renderer->SetSprite(&pepe);
+	t1 = &game_object->GetTransform();
+
+
 }
 
 void testScene::OnUpdate()
@@ -46,11 +54,5 @@ void testScene::OnUpdate()
 
 void testScene::OnRender()
 {
-	spriteBatch.Begin();
-	spriteBatch.Draw("pepe", 256, 256, -1, t1);
 
-
-	spriteBatch.End();
-
-	spriteBatch.Render();
 }

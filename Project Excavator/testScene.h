@@ -12,7 +12,7 @@ public:
 	void OnUpdate() override;
 	void OnRender() override;
 private:
-	SpriteBatch spriteBatch;
 	Transform* t1;
+	Sprite pepe;
 };
 

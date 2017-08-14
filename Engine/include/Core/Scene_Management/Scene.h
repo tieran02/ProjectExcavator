@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneGraph.h"
+#include "Rendering/SpriteBatch.h"
 
 class Scene {
 	friend class SceneManager;
@@ -16,6 +17,7 @@ public:
 
 	const char* GetSceneName() const { return m_sceneName; };
 	SceneGraph& GetSceneGraph() { return m_sceneGrapth; }
+	SpriteBatch* GetSpriteBatch() { return &m_spriteBatch; }
 private:
 	void load();
 	void unload();
@@ -25,5 +27,6 @@ private:
 	void render();
 
 	SceneGraph m_sceneGrapth;
+	SpriteBatch m_spriteBatch;
 	const char* m_sceneName;
 };

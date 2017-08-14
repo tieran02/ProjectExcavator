@@ -49,6 +49,10 @@ void Component::LateUpdate()
 {
 }
 
+void Component::Render()
+{
+}
+
 void Component::Destroy()
 {
 }

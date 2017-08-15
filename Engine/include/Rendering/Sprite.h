@@ -1,19 +1,16 @@
 #pragma once
-
-#include "Texture2D.h"
+#include "Resources/TextureAsset.h"
 
 class Sprite {
 public:
     Sprite() = default;
-    Sprite(const char* path, const char* name, float width, float height);
     Sprite(const char* name, float width, float height);
 
     ~Sprite();
 
-    void Load(const char* path, const char* name, float width, float height);
     void Load(const char* name, float width, float height);
 
-    Texture2D* Texture() const{
+    TextureAsset* Texture() const{
         return m_texture;
     }
 
@@ -28,6 +25,6 @@ public:
 	}
 
 private:
-    Texture2D* m_texture;
+	TextureAsset* m_texture;
     float m_width, m_height;
 };

@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 #include <vector>
-#include <Rendering/Texture2D.h>
+#include <Resources/TextureAsset.h>
 #include <Rendering/Sprite.h>
 #include <Core/Components/Transform.h>
 
@@ -16,11 +16,11 @@ enum class SpriteSortType{
 
 class RenderBatch{
 public:
-    RenderBatch(GLuint offset, GLuint vertexCount, Texture2D* texture) : Offset(offset), VertexCount(vertexCount),
+    RenderBatch(GLuint offset, GLuint vertexCount, TextureAsset* texture) : Offset(offset), VertexCount(vertexCount),
 		Texture(texture){}
     GLuint Offset;
     GLuint VertexCount;
-    Texture2D* Texture;
+	TextureAsset* Texture;
 };
 
 class SpriteBatch {

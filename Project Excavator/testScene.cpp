@@ -1,16 +1,17 @@
 #include "testScene.h"
-#include "Resources/ResourceManager.h"
 #include "Core/Game.h"
 #include "Core/Scene_Management/SceneManager.h"
 #include "Core/Input.h"
 #include "Core/Components/SpriteRenderer.h"
 #include "Core/Time.h"
 #include "Debug/Debug.h"
+#include "Resources/AssetManager.h"
+#include "Resources/TextureAsset.h"
 
 
 void testScene::OnLoad()
 {
-	ResourceManager::TextureManagerInstance()->AddTexture("./res/pepe.jpg", "pepe");
+	AssetManager::Instance()->Add(new TextureAsset("pepe", "./res/pepe.jpg"));
 
 	GameObject* camera = GetSceneGraph().AddGameObject("Camera");
 	Camera* cam = static_cast<Camera*>(camera->AddComponent(new Camera));

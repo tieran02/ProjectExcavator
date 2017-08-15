@@ -9,15 +9,10 @@
 #include <Math/Vector4.h>
 #include <Math/Radians.h>
 #include <Math/Quaternion.h>
-#include <algorithm>
 
-inline float Clamp01(float value)
+class Math
 {
-	return std::max(0.0f, std::min(value, 1.0f));
-}
-
-inline float Clamp(float value, float min, float max)
-{
-	return std::max(min, std::min(value, max));
-}
-
+public:
+	static float Clamp01(float value);
+	static float Clamp(float value, float min, float max);
+};

@@ -1,30 +1,31 @@
+#include <Resources/TextureAsset.h>
 
-#include <iostream>
-#include "Rendering/Texture2D.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+#include "Debug/Debug.h"
 
-Texture2D::Texture2D(const char* directory)
+TextureAsset::TextureAsset(const char* name, const char* path): Asset(AssetType::TEXTURE, name)
 {
-	CreateTextureFromFile(directory);
+	createTexture(path);
 }
 
-Texture2D::~Texture2D()
+TextureAsset::~TextureAsset()
 {
 	glDeleteTextures(1, &this->m_texture_ID);
+	LOG_INFO("Texture '" << this->GetName() << "' Deleted");
 }
 
-void Texture2D::Bind()
+void TextureAsset::Bind() const
 {
-    glBindTexture(GL_TEXTURE_2D, this->m_texture_ID);
+	glBindTexture(GL_TEXTURE_2D, this->m_texture_ID);
 }
 
-void Texture2D::Unbind()
+void TextureAsset::Unbind() const
 {
-    glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Texture2D::CreateTextureFromFile(const char* path)
+void TextureAsset::createTexture(const char* path)
 {
 	//Generate texture ID and load texture data
 	glGenTextures(1, &this->m_texture_ID);
@@ -44,3 +45,4 @@ void Texture2D::CreateTextureFromFile(const char* path)
 	glBindTexture(GL_TEXTURE_2D, 0);
 	stbi_image_free(image);
 }
+

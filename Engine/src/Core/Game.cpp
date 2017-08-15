@@ -1,10 +1,9 @@
 #include <Core/Game.h>
 #include <Core/Input.h>
 
-#include <Math/Math.h>
-#include "Resources/ResourceManager.h"
 #include "Core/Scene_Management/SceneManager.h"
 #include "Core/Time.h"
+#include "Resources/AssetManager.h"
 
 Game* Game::m_instance = 0;
 double Time::DeltaTime = 0;
@@ -34,7 +33,7 @@ void Game::intialise() {
 
 void Game::Destroy() {
 	SceneManager::Instance()->Destroy();
-    ResourceManager::Destroy();
+    AssetManager::Instance()->Destroy();
     m_window.Destroy();
 }
 

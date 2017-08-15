@@ -4,7 +4,8 @@
 #include "Rendering/SpriteBatch.h"
 #include <algorithm>
 #include <Core/Vertex.h>
-#include "Resources/ResourceManager.h"
+#include "Resources/ShaderAsset.h"
+#include "Resources/AssetManager.h"
 
 const Vertex vertices[6] = {
         Vertex(Vector3(-1.0f,1.0f,0.0f), Vector2(0.0f,1.0f)), 
@@ -55,7 +56,7 @@ void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform)
 
 void SpriteBatch::Render() {
 	//Bind vao
-	Shader* shader = ResourceManager::ShaderManagerInstance()->GetShader("sprite");
+	ShaderAsset* shader = static_cast<ShaderAsset*>(AssetManager::Instance()->Get("sprite_shader"));
 	if (shader != nullptr) {
 		glBindVertexArray(m_vao);
 

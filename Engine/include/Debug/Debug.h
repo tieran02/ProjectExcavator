@@ -1,13 +1,6 @@
 #pragma once
-#include <string>
+#include <iostream>
 
-enum LogLevel
-{
-	logERROR, logWARNING, logINFO
-};
-
-class Debug
-{
-public:
-	static void Log(LogLevel level, std::string data);
-};
+#define LOG_ERROR(x) do { std::cerr << "ERROR::" << x << std::endl; } while (0)
+#define LOG_WARNING(x) do { std::cerr << "WARNING::" << x << std::endl; } while (0)
+#define LOG_INFO(x) do { std::cout << "INFO::" << x << std::endl; } while (0)

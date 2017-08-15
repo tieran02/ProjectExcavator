@@ -28,4 +28,6 @@ private:
     std::unordered_map<const char*,Scene*> m_sceneMap;
 	static SceneManager* m_instance;
 
+	static void addDefaultAssets();
+
 };

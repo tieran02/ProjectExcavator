@@ -1,6 +1,7 @@
-#include <Resources/ResourceManager.h>
 #include <Core/Components/Camera.h>
 #include "Core/Game.h"
+#include "Resources/ShaderAsset.h"
+#include "Resources/AssetManager.h"
 
 Camera* Camera::MainCamera = nullptr;
 
@@ -25,7 +26,7 @@ void Camera::Awake()
 
 void Camera::Update()
 {
-	Shader* shader = ResourceManager::ShaderManagerInstance()->GetShader("sprite");
+	ShaderAsset* shader = static_cast<ShaderAsset*>(AssetManager::Instance()->Get("sprite_shader"));
 	if (shader != nullptr) {
 		shader->Bind();
 		shader->SetUniform("view", VPMatrix(), 1, false);

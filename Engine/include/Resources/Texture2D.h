@@ -2,11 +2,11 @@
 #include "Asset.h"
 #include <glad/glad.h>
 
-class Texture : public Asset
+class Texture2D : public Asset
 {
 public:
-	Texture(const char* name, const char* path);
-	~Texture() override;
+	Texture2D(const char* name, const char* path);
+	~Texture2D() override;
 
 	void Bind() const;
 	void Unbind() const;

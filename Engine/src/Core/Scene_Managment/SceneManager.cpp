@@ -2,6 +2,7 @@
 #include "Debug/Debug.h"
 #include "Resources/AssetManager.h"
 #include "Resources/Shader.h"
+#include "Core/Scene_Management/Scene.h"
 
 SceneManager* SceneManager::m_instance = 0;
 
@@ -114,12 +115,15 @@ void SceneManager::addDefaultAssets()
 	#version 330 core
 	layout (location = 0) in vec3 aPos;
 	layout (location = 1) in vec2 aTexCoord;
+	layout (location = 2) in vec4 aColor;
 	out vec2 TexCoord;
+	out vec4 Color;
 	uniform mat4 view;
 	void main()
 	{
 		gl_Position = view * vec4(aPos, 1.0f);
 		TexCoord = aTexCoord;
+		Color = aColor;
 	}
 	)"";
 
@@ -127,11 +131,11 @@ void SceneManager::addDefaultAssets()
 	#version 330 core
 	out vec4 FragColor;
 	in vec2 TexCoord;
-	uniform vec3 color = vec3(1,1,1);
+	in vec4 Color;
 	uniform sampler2D texture1;
 	void main()
 	{
-		FragColor = texture(texture1, TexCoord) * vec4(color, 1.0);
+		FragColor = texture(texture1, TexCoord) * Color;
 	}
 	)"";
 

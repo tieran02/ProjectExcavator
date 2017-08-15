@@ -1,4 +1,5 @@
 #include <Core/Scene_Management/Scene.h>
+#include <Rendering/SpriteBatch.h>
 
 Scene::Scene(const char* name) {
 	this->m_sceneName = name;

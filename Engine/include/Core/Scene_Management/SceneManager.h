@@ -1,5 +1,6 @@
 #pragma once
 #include <Core/Game.h>
+#include <unordered_map>
 #include <Core/Scene_Management/Scene.h>
 
 class SceneManager{

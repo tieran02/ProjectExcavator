@@ -1,8 +1,6 @@
 #pragma once
 
-#include <Math/Matrix4.h>
-#include <Math/Quaternion.h>
-#include <Math/Vector2.h>
+#include <Math/Math.h>
 #include "Component.h"
 
 class Transform : public Component{

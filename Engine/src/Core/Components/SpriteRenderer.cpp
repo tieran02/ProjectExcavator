@@ -1,7 +1,7 @@
 #include <Core/Components/SpriteRenderer.h>
 #include "Core/Components/GameObject.h"
 
-SpriteRenderer::SpriteRenderer(SpriteBatch* spriteBatch) : Component("SpriteRenderer", true), m_depth(-1)
+SpriteRenderer::SpriteRenderer(SpriteBatch* spriteBatch) : Component("SpriteRenderer", true), m_depth(-1), m_color(1,1,1,1)
 {
 	this->m_spriteBatch = spriteBatch;
 }
@@ -9,7 +9,7 @@ SpriteRenderer::SpriteRenderer(SpriteBatch* spriteBatch) : Component("SpriteRend
 void SpriteRenderer::Render()
 {
 	if(this->m_sprite != nullptr)
-		this->m_spriteBatch->Draw(m_sprite, m_depth, &GetGameObject().GetTransform());
+		this->m_spriteBatch->Draw(m_sprite, m_depth, &GetGameObject().GetTransform(), m_color);
 }
 
 void SpriteRenderer::SetSprite(Sprite* sprite)

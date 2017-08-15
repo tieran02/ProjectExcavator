@@ -1,7 +1,5 @@
 #pragma once
 #include "Core/Game.h"
-#include "Rendering/SpriteBatch.h"
-
 
 class mainGame : public Game
 {

@@ -1,28 +1,27 @@
 #pragma once
-
 #include <glad/glad.h>
 #include <vector>
-#include <Resources/Texture.h>
 #include <Core/Components/Transform.h>
-#include <Resources/Sprite.h>
-
-
-enum class SpriteSortType{
-    FRONT_BACK,
-    BACK_FRONT,
-    TEXTURE
-};
-
-class RenderBatch{
-public:
-    RenderBatch(GLuint offset, GLuint vertexCount, Texture* texture) : Offset(offset), VertexCount(vertexCount),
-		Texture(texture){}
-    GLuint Offset;
-    GLuint VertexCount;
-	Texture* Texture;
-};
+#include <Rendering/Color.h>
+#include "Resources/Texture2D.h"
+#include "Resources/Sprite.h"
 
 class SpriteBatch {
+	enum class SpriteSortType {
+		FRONT_BACK,
+		BACK_FRONT,
+		TEXTURE
+	};
+
+	class RenderBatch {
+	public:
+		RenderBatch(GLuint offset, GLuint vertexCount, Texture2D* texture) : Offset(offset), VertexCount(vertexCount),
+			Texture(texture) {}
+		GLuint Offset;
+		GLuint VertexCount;
+		Texture2D* Texture;
+	};
+
 public:
     SpriteBatch();
     ~SpriteBatch();
@@ -32,17 +31,18 @@ public:
     void Begin(SpriteSortType sortType = SpriteSortType::TEXTURE);
     void End();
 
-	void Draw(Sprite* sprite, float depth, Transform* transform);
+	void Draw(Sprite* sprite, float depth, Transform* transform, Color color);
 
     void Render();
 private:
 
 	struct glyph
 	{
-		glyph(Sprite* sprite, float depth, Transform* transform) : Sprite(sprite), Depth(depth), Transform(transform){}
+		glyph(Sprite* sprite, float depth, Transform* transform, Color color) : Sprite(sprite), Depth(depth), Transform(transform),Color(color){}
 		Sprite* Sprite;
 		float Depth;
 		Transform* Transform;
+		Color Color;
 	};
 
     GLuint m_vbo;

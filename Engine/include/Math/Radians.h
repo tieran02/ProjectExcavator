@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Math/Math.h>
-
 class Radians{
 public:
     static float FromDegrees(float degree)

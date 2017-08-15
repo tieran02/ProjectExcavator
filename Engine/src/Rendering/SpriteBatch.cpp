@@ -2,19 +2,19 @@
 // Created by tieran on 06/08/17.
 //
 #include "Rendering/SpriteBatch.h"
-#include <algorithm>
-#include <Core/Vertex.h>
+#include "Core/Vertex.h"
 #include "Resources/Shader.h"
 #include "Resources/AssetManager.h"
+#include <algorithm>
 
 const Vertex vertices[6] = {
-        Vertex(Vector3(-1.0f,1.0f,0.0f), Vector2(0.0f,1.0f)), 
-        Vertex(Vector3(1.0f,-1.0f,0.0f), Vector2(1.0f,0.0f)),
-        Vertex(Vector3(-1.0f,-1.0f,0.0f), Vector2(0.0f,0.0f)),
+        Vertex(Vector3(-1.0f,1.0f,0.0f), Vector2(0.0f,1.0f), Vector4(1,1,1,1)), 
+        Vertex(Vector3(1.0f,-1.0f,0.0f), Vector2(1.0f,0.0f), Vector4(1,1,1,1)),
+        Vertex(Vector3(-1.0f,-1.0f,0.0f), Vector2(0.0f,0.0f), Vector4(1,1,1,1)),
 
-        Vertex(Vector3(-1.0f,1.0f,0.0f), Vector2(0.0f,1.0f)),
-        Vertex(Vector3(1.0f,1.0f,0.0f), Vector2(1.0f,1.0f)),
-        Vertex(Vector3(1.0f,-1.0f,0.0f), Vector2(1.0f,0.0f))
+        Vertex(Vector3(-1.0f,1.0f,0.0f), Vector2(0.0f,1.0f), Vector4(1,1,1,1)),
+        Vertex(Vector3(1.0f,1.0f,0.0f), Vector2(1.0f,1.0f), Vector4(1,1,1,1)),
+        Vertex(Vector3(1.0f,-1.0f,0.0f), Vector2(1.0f,0.0f), Vector4(1,1,1,1))
 };
 
 
@@ -49,9 +49,9 @@ void SpriteBatch::End() {
 	createRenderBatches();
 }
 
-void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform)
+void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform, Color color)
 {
-    m_sprites.emplace_back(sprite, depth,transform);
+    m_sprites.emplace_back(sprite, depth,transform,color);
 }
 
 void SpriteBatch::Render() {
@@ -89,6 +89,9 @@ void SpriteBatch::createVAO() {
     // texture coord attribute
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex,UV));
     glEnableVertexAttribArray(1);
+	// color attribute
+	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Color));
+	glEnableVertexAttribArray(2);
 	//unbind vao
     glBindVertexArray(0);
 }
@@ -107,12 +110,12 @@ void SpriteBatch::createRenderBatches() {
 	Matrix4 transform = m_spritePointers[0]->Transform->TransformMatrix();
 
 	Vector2 size = Vector2(m_spritePointers[0]->Sprite->Width(), m_spritePointers[0]->Sprite->Height());
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x/2 * size.x, vertices[0].Pos.y/2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[0].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[1].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[2].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[3].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[4].UV);
-	verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[5].UV);
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x/2 * size.x, vertices[0].Pos.y/2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[0].UV, m_spritePointers[0]->Color.Vec4());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[1].UV, m_spritePointers[0]->Color.Vec4());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[2].UV, m_spritePointers[0]->Color.Vec4());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[3].UV, m_spritePointers[0]->Color.Vec4());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[4].UV, m_spritePointers[0]->Color.Vec4());
+	verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), vertices[5].UV, m_spritePointers[0]->Color.Vec4());
 	offset += 6;
 
 	for (int i = 1; i < m_spritePointers.size(); i++)
@@ -127,12 +130,12 @@ void SpriteBatch::createRenderBatches() {
 		{
 			m_batches.back().VertexCount += 6;
 		}
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x / 2 * size.x, vertices[0].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[0].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[1].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[2].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[3].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[4].UV);
-		verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[5].UV);
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[0].Pos.x / 2 * size.x, vertices[0].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[0].UV, m_spritePointers[i]->Color.Vec4());
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[1].Pos.x / 2 * size.x, vertices[1].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[1].UV, m_spritePointers[i]->Color.Vec4());
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[2].Pos.x / 2 * size.x, vertices[2].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[2].UV, m_spritePointers[i]->Color.Vec4());
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[3].Pos.x / 2 * size.x, vertices[3].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[3].UV, m_spritePointers[i]->Color.Vec4());
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[4].Pos.x / 2 * size.x, vertices[4].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[4].UV, m_spritePointers[i]->Color.Vec4());
+		verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[i]->Depth, 1)).XYZ(), vertices[5].UV, m_spritePointers[i]->Color.Vec4());
 		offset += 6;
 
 	}

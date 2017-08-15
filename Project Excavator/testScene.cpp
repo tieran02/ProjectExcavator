@@ -1,27 +1,39 @@
-#include "testScene.h"
-#include "Core/Game.h"
-#include "Core/Scene_Management/SceneManager.h"
+#include "Resources/AssetManager.h"
+#include "Core/Components/Camera.h"
+#include "Core/Components/SpriteRenderer.h"
 #include "Core/Input.h"
 #include "Core/Time.h"
-#include "Debug/Debug.h"
-#include "Resources/AssetManager.h"
-#include "Core/Components/SpriteRenderer.h"
+#include "Core/Scene_Management/SceneManager.h"
+#include "testScene.h"
+#include <Resources/Sprite.h>
 
+
+Transform* t1;
 
 void testScene::OnLoad()
 {
-	AssetManager::Instance()->Add(new Texture("pepe_texture", "./res/wall.jpg"));
+	AssetManager::Instance()->Add(new Texture2D("pepe_texture", "./res/pepe.jpg"));
 
 	GameObject* camera = GetSceneGraph().AddGameObject("Camera");
-	Camera* cam = static_cast<Camera*>(camera->AddComponent(new Camera));
+	auto cam = static_cast<Camera*>(camera->AddComponent(new Camera));
 	cam->SetMain();
 
-	Sprite* sprite = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("pepe", "pepe_texture", 128, 128)));
+
+	auto sprite = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("pepe", "pepe_texture", 256, 256)));
 
 	GameObject* game_object = GetSceneGraph().AddGameObject("pepe");
 	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch())));
 	sprite_renderer->SetSprite(sprite);
 	t1 = &game_object->GetTransform();
+	sprite_renderer->GetColor().R = .25f;
+
+	GameObject* game_object1 = GetSceneGraph().AddGameObject("pepe1");
+	SpriteRenderer* sprite_renderer1 = static_cast<SpriteRenderer*>(game_object1->AddComponent(new SpriteRenderer(GetSpriteBatch())));
+	sprite_renderer1->SetSprite(sprite);
+	t1 = &game_object1->GetTransform();
+
+
+
 
 
 }

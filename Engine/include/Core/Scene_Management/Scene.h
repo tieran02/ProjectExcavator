@@ -1,5 +1,5 @@
 #pragma once
-#include "SceneGraph.h"
+#include <Core/Scene_Management/SceneGraph.h>
 #include "Rendering/SpriteBatch.h"
 
 class Scene {

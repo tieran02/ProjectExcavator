@@ -1,7 +1,6 @@
 #pragma once
 #include <unordered_map>
-#include <Core/Components/GameObject.h>
-#include <memory>
+#include "Core/Components/GameObject.h"
 
 class SceneGraph
 {

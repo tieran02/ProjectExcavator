@@ -1,16 +1,16 @@
 #pragma once
-enum class AssetType
-{
-	SHADER,
-	TEXTURE,
-	SPRITE,
-	SOUND,
-	TEXT
-};
-
 class Asset
 {
 public:
+	enum AssetType
+	{
+		SHADER,
+		TEXTURE,
+		SPRITE,
+		SOUND,
+		TEXT
+	};
+
 	Asset(AssetType type, const char* name);
 	virtual ~Asset();
 

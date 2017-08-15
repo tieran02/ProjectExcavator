@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainGame.cpp" />
+    <ClCompile Include="splashScreen.cpp" />
     <ClCompile Include="testScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainGame.h" />
+    <ClInclude Include="splashScreen.h" />
     <ClInclude Include="testScene.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -89,7 +91,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)\Engine\include;$(SolutionDir)\libs\include\release;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\libs\libs\release;$(SolutionDir)\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\Release;$(SolutionDir)\libs\libs\release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

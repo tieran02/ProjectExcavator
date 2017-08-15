@@ -4,7 +4,7 @@
 #include "Rendering/SpriteBatch.h"
 #include <algorithm>
 #include <Core/Vertex.h>
-#include "Resources/ShaderAsset.h"
+#include "Resources/Shader.h"
 #include "Resources/AssetManager.h"
 
 const Vertex vertices[6] = {
@@ -56,7 +56,7 @@ void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform)
 
 void SpriteBatch::Render() {
 	//Bind vao
-	ShaderAsset* shader = static_cast<ShaderAsset*>(AssetManager::Instance()->Get("sprite_shader"));
+	Shader* shader = static_cast<Shader*>(AssetManager::Instance()->Get("sprite_shader"));
 	if (shader != nullptr) {
 		glBindVertexArray(m_vao);
 
@@ -103,7 +103,7 @@ void SpriteBatch::createRenderBatches() {
 	int offset = 0;
 	int currentVert = 0;
 
-    m_batches.emplace_back(offset,6,m_spritePointers[0]->Sprite->Texture()); // emplace firse sprite
+    m_batches.emplace_back(offset,6,m_spritePointers[0]->Sprite->GetTexture()); // emplace firse sprite
 	Matrix4 transform = m_spritePointers[0]->Transform->TransformMatrix();
 
 	Vector2 size = Vector2(m_spritePointers[0]->Sprite->Width(), m_spritePointers[0]->Sprite->Height());
@@ -119,9 +119,9 @@ void SpriteBatch::createRenderBatches() {
 	{	
 		transform = m_spritePointers[i]->Transform->TransformMatrix();
 		size = Vector2(m_spritePointers[i]->Sprite->Width(), m_spritePointers[i]->Sprite->Height());
-		if(m_spritePointers[i]->Sprite->Texture()->GetTextureID() != m_spritePointers[i-1]->Sprite->Texture()->GetTextureID())
+		if(m_spritePointers[i]->Sprite->GetTexture()->GetTextureID() != m_spritePointers[i-1]->Sprite->GetTexture()->GetTextureID())
 		{
-			m_batches.emplace_back(offset, 6, m_spritePointers[i]->Sprite->Texture()); // if texture is differnt
+			m_batches.emplace_back(offset, 6, m_spritePointers[i]->Sprite->GetTexture()); // if texture is differnt
 		}
 		else
 		{
@@ -165,5 +165,5 @@ bool SpriteBatch::compareBackToBack(glyph *a, glyph *b) {
     return (a->Depth > b->Depth );}
 
 bool SpriteBatch::compareTexture(glyph *a, glyph *b) {
-    return (a->Sprite->Texture()->GetTextureID() < b->Sprite->Texture()->GetTextureID() );
+    return (a->Sprite->GetTexture()->GetTextureID() < b->Sprite->GetTexture()->GetTextureID() );
 }

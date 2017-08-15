@@ -1,31 +1,31 @@
-#include <Resources/TextureAsset.h>
+#include <Resources/Texture.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 #include "Debug/Debug.h"
 
-TextureAsset::TextureAsset(const char* name, const char* path): Asset(AssetType::TEXTURE, name)
+Texture::Texture(const char* name, const char* path): Asset(AssetType::TEXTURE, name)
 {
 	createTexture(path);
 }
 
-TextureAsset::~TextureAsset()
+Texture::~Texture()
 {
 	glDeleteTextures(1, &this->m_texture_ID);
 	LOG_INFO("Texture '" << this->GetName() << "' Deleted");
 }
 
-void TextureAsset::Bind() const
+void Texture::Bind() const
 {
 	glBindTexture(GL_TEXTURE_2D, this->m_texture_ID);
 }
 
-void TextureAsset::Unbind() const
+void Texture::Unbind() const
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void TextureAsset::createTexture(const char* path)
+void Texture::createTexture(const char* path)
 {
 	//Generate texture ID and load texture data
 	glGenTextures(1, &this->m_texture_ID);

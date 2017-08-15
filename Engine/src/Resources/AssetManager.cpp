@@ -12,11 +12,12 @@ AssetManager::~AssetManager()
 	Destroy();
 }
 
-void AssetManager::Add(Asset* asset)
+Asset* AssetManager::Add(Asset* asset)
 {
 	if (asset != nullptr) {
 		this->m_assets.insert(std::pair<const char*, Asset*>(asset->GetName(), static_cast<Asset*>(asset)));
 		asset->Load();
+		return asset;
 	}
 }
 

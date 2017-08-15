@@ -27,9 +27,6 @@
     <ClCompile Include="src\Math\Quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Rendering\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Rendering\SpriteBatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,16 +60,22 @@
     <ClCompile Include="src\Resources\Asset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Resources\ShaderAsset.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Resources\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Resources\TextureAsset.cpp">
+    <ClCompile Include="src\Math\Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Math\Math.cpp">
+    <ClCompile Include="include\Resources\Sprite.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resources\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,9 +119,6 @@
     <ClInclude Include="include\Math\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rendering\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Rendering\SpriteBatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -158,13 +158,13 @@
     <ClInclude Include="include\Resources\Asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resources\ShaderAsset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Resources\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Resources\TextureAsset.h">
+    <ClInclude Include="include\Resources\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Resources\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

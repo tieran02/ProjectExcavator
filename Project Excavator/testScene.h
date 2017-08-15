@@ -13,6 +13,5 @@ public:
 	void OnRender() override;
 private:
 	Transform* t1;
-	Sprite pepe;
 };
 

@@ -16,7 +16,7 @@ public:
 		return m_instance;
 	}
 
-	void Add(Asset* asset);
+	Asset* Add(Asset* asset);
 	Asset* Get(const char* name);
 	void Destroy();
 	void DeleteAsset(const char* name);

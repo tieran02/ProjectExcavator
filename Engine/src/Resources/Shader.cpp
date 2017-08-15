@@ -1,78 +1,78 @@
-#include <Resources/ShaderAsset.h>
+#include <Resources/Shader.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include "Debug/Debug.h"
 
-ShaderAsset::ShaderAsset(const char* name, const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile) : m_vertexSourchPath(vertexSourchPath),
+Shader::Shader(const char* name, const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile) : m_vertexSourchPath(vertexSourchPath),
 m_fragmentSourcePath(fragmentSourcePath), m_isFile(isFile), Asset(AssetType::SHADER,name)
 {
 	compile();
 }
 
-ShaderAsset::~ShaderAsset()
+Shader::~Shader()
 {
 	glDeleteProgram(this->program);
 	LOG_INFO("Shader '" << this->GetName() << "' Deleted");
 
 }
 
-void ShaderAsset::Load()
+void Shader::Load()
 {
 }
 
-void ShaderAsset::Bind() const
+void Shader::Bind() const
 {
 	glUseProgram(this->program);
 }
 
 
-void ShaderAsset::Unbind() const
+void Shader::Unbind() const
 {
 	glUseProgram(0);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, int value) const {
+void Shader::SetUniform(const char *uniformName, int value) const {
 	glUniform1i(GetUniformLocationByName(uniformName), value);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, unsigned int value) const {
+void Shader::SetUniform(const char *uniformName, unsigned int value) const {
 	glUniform1i(GetUniformLocationByName(uniformName), value);
 }
 
-int ShaderAsset::GetUniformLocationByName(const char *uniformName) const {
+int Shader::GetUniformLocationByName(const char *uniformName) const {
 	return glGetUniformLocation(program, uniformName);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, float value) const {
+void Shader::SetUniform(const char *uniformName, float value) const {
 	glUniform1f(GetUniformLocationByName(uniformName), value);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, Vector2 value) const {
+void Shader::SetUniform(const char *uniformName, Vector2 value) const {
 	glUniform2f(GetUniformLocationByName(uniformName), value.x, value.y);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, Vector3 value) const {
+void Shader::SetUniform(const char *uniformName, Vector3 value) const {
 	glUniform3f(GetUniformLocationByName(uniformName), value.x, value.y, value.z);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, Vector4 value) const {
+void Shader::SetUniform(const char *uniformName, Vector4 value) const {
 	glUniform4f(GetUniformLocationByName(uniformName), value.x, value.y, value.z, value.w);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, Matrix3 value, int count, bool transpose) const {
+void Shader::SetUniform(const char *uniformName, Matrix3 value, int count, bool transpose) const {
 	glUniformMatrix3fv(GetUniformLocationByName(uniformName), count, transpose, &value[0][0]);
 }
 
-void ShaderAsset::SetUniform(const char *uniformName, Matrix4 value, int count, bool transpose) const {
+void Shader::SetUniform(const char *uniformName, Matrix4 value, int count, bool transpose) const {
 	glUniformMatrix4fv(GetUniformLocationByName(uniformName), count, transpose, &value[0][0]);
 }
 
-GLuint ShaderAsset::GetProgramID() const {
+GLuint Shader::GetProgramID() const {
 	return this->program;
 }
 
-void ShaderAsset::compile()
+void Shader::compile()
 {
 	std::string vertexCode;
 	std::string fragmentCode;

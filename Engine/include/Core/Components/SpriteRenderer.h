@@ -1,7 +1,8 @@
 #pragma once
 #include "Component.h"
-#include "Rendering/Sprite.h"
 #include "Rendering/SpriteBatch.h"
+
+
 
 class SpriteRenderer : public Component
 {

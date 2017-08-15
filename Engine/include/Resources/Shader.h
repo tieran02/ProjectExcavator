@@ -3,11 +3,11 @@
 #include <glad/glad.h>
 #include <Math/Math.h>
 
-class ShaderAsset : public Asset
+class Shader : public Asset
 {
 public:
-	ShaderAsset(const char* name, const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile);
-	~ShaderAsset() override;
+	Shader(const char* name, const char* vertexSourchPath, const char* fragmentSourcePath, bool isFile);
+	~Shader() override;
 
 	void Load() override;
 	void Bind() const;

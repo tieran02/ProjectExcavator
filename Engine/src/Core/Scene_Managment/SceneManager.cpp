@@ -1,7 +1,7 @@
 #include <Core/Scene_Management/SceneManager.h>
 #include "Debug/Debug.h"
 #include "Resources/AssetManager.h"
-#include "Resources/ShaderAsset.h"
+#include "Resources/Shader.h"
 
 SceneManager* SceneManager::m_instance = 0;
 
@@ -135,5 +135,5 @@ void SceneManager::addDefaultAssets()
 	}
 	)"";
 
-	AssetManager::Instance()->Add(new ShaderAsset("sprite_shader", spriteVert, spriteFrag, false));
+	AssetManager::Instance()->Add(new Shader("sprite_shader", spriteVert, spriteFrag, false));
 }

@@ -25,6 +25,12 @@ void SceneManager::LoadScene(const char* name)
 	}
 	else
 	{
+		if (this->m_currentScene != nullptr)
+		{
+			this->m_currentScene->unload();
+			this->m_currentScene->GetSceneGraph().Destroy();
+			AssetManager::Instance()->Destroy();
+		}
 		addDefaultAssets();
 		this->m_currentScene = it->second;
 		this->m_currentScene->load();

@@ -34,6 +34,9 @@ public:
 	void Draw(Sprite* sprite, float depth, Transform* transform, Color color);
 
     void Render();
+
+	static float PIXLES_PER_UNIT;
+
 private:
 
 	struct glyph

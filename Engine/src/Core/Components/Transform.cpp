@@ -3,29 +3,37 @@
 //
 
 #include <Core/Components/Transform.h>
+#include "Core/Time.h"
 
+
+void Transform::Update()
+{
+	this->m_velocity = (this->m_position - this->m_lastPos) * (1.0f / Time::DeltaTime);
+
+	this->m_lastPos = m_position;
+}
 
 Matrix4 Transform::TransformMatrix() const {
     return this->m_translationMatrix * this->m_rotationMatrix * this->m_scaleMatrix;
 }
 
-const Matrix4 & Transform::TranslationMatrix() const {
+Matrix4& Transform::TranslationMatrix()  {
     return this->m_translationMatrix;
 }
 
-const Matrix4 &Transform::ScaleMatrix() const {
+Matrix4 &Transform::ScaleMatrix() {
     return this->m_scaleMatrix;
 }
 
-const Matrix4 &Transform::Rotationatrix() const {
+Matrix4 &Transform::Rotationatrix() {
     return this->m_rotationMatrix;
 }
 
-const Vector3 &Transform::GetPosition() const {
+Vector3 &Transform::GetPosition()  {
     return this->m_position;
 }
 
-const Vector2 Transform::GetPositionXY() const {
+Vector2 Transform::GetPositionXY() const {
     return Vector2(this->m_position.x,this->m_position.y);
 }
 
@@ -39,7 +47,7 @@ void Transform::SetPosition(Vector2 pos) {
     updateTranslationMatrix();
 }
 
-const Vector3 &Transform::GetScale() const {
+Vector3 &Transform::GetScale() {
     return this->m_scale;
 }
 
@@ -48,7 +56,7 @@ void Transform::SetScale(Vector3 scale) {
     updateScaleMatrix();
 }
 
-const Quaternion &Transform::GetRotation() const {
+Quaternion &Transform::GetRotation() {
     return this->m_rotation;
 }
 

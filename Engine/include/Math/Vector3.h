@@ -14,6 +14,16 @@ struct Vector3
         z = c;
     }
 
+	static Vector3 One()
+	{
+		return Vector3(1.0f, 1.0f, 1.0f);
+	}
+
+	static Vector3 Zero()
+	{
+		return Vector3(0.0f, 0.0f, 0.0f);
+	}
+
     float& operator [](int i)
     {
         return ((&x)[i]);

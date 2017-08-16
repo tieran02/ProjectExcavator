@@ -13,6 +13,16 @@ struct Vector2
         this->y = y;
     }
 
+	static Vector2 One()
+	{
+		return Vector2(1.0f, 1.0f);
+	}
+
+	static Vector2 Zero()
+	{
+		return Vector2(0.0f, 0.0f);
+	}
+
     float& operator [](int i)
     {
         return ((&x)[i]);

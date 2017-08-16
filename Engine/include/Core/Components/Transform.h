@@ -11,19 +11,22 @@ public:
 		m_scale = Vector3(1, 1, 1);
 	}
 
-    Matrix4 TransformMatrix() const;
-    const Matrix4 & TranslationMatrix() const;
-    const Matrix4& ScaleMatrix() const;
-    const Matrix4& Rotationatrix() const;
+	void Update() override;
 
-    const Vector3& GetPosition() const;
-    const Vector2 GetPositionXY() const;
+    Matrix4 TransformMatrix() const;
+    Matrix4& TranslationMatrix();
+    Matrix4& ScaleMatrix();
+    Matrix4& Rotationatrix();
+
+    Vector3& GetPosition();
+    Vector2 GetPositionXY() const;
     void  SetPosition(Vector3 pos);
     void  SetPosition(Vector2 pos);
-    const Vector3& GetScale()const;
+    Vector3& GetScale();
     void  SetScale(Vector3 scale);
-    const Quaternion& GetRotation() const;
+    Quaternion& GetRotation();
     void SetRotation(Quaternion rot);
+	Vector3& Velocity() { return m_velocity; }
 
 private:
     Matrix4 m_translationMatrix;
@@ -31,6 +34,8 @@ private:
     Matrix4 m_rotationMatrix;
 
     Vector3 m_position;
+	Vector3 m_velocity;
+	Vector3 m_lastPos;
     Vector3 m_scale;
     Quaternion m_rotation;
 

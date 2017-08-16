@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\AudioMaster.cpp" />
+    <ClCompile Include="src\Core\Components\AudioListener.cpp" />
+    <ClCompile Include="src\Core\Components\AudioSource.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\Math\Math.cpp" />
     <ClCompile Include="src\Resources\AssetManager.cpp" />
     <ClCompile Include="src\Resources\Shader.cpp" />
@@ -37,10 +41,14 @@
     <ClCompile Include="src\Core\Components\Camera.cpp" />
     <ClCompile Include="src\Rendering\SpriteBatch.cpp" />
     <ClCompile Include="src\Resources\Asset.cpp" />
+    <ClCompile Include="src\Resources\Sound.cpp" />
     <ClCompile Include="src\Resources\Sprite.cpp" />
     <ClCompile Include="src\Resources\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Core\AudioMaster.h" />
+    <ClInclude Include="include\Core\Components\AudioListener.h" />
+    <ClInclude Include="include\Core\Components\AudioSource.h" />
     <ClInclude Include="include\Core\Components\Component.h" />
     <ClInclude Include="include\Core\Components\GameObject.h" />
     <ClInclude Include="include\Core\Components\SpriteRenderer.h" />
@@ -68,6 +76,7 @@
     <ClInclude Include="include\Resources\Asset.h" />
     <ClInclude Include="include\Resources\AssetManager.h" />
     <ClInclude Include="include\Resources\Shader.h" />
+    <ClInclude Include="include\Resources\Sound.h" />
     <ClInclude Include="include\Resources\Sprite.h" />
     <ClInclude Include="include\Resources\Texture2D.h" />
     <ClInclude Include="include\Core\Scene_Management\Scene.h" />
@@ -139,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -163,7 +172,7 @@
     </Link>
     <Lib />
     <Lib>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

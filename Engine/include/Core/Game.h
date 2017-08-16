@@ -2,6 +2,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <Core/Window.h>
+#include "AudioMaster.h"
 
 class Game{
 public:
@@ -15,6 +16,7 @@ public:
     void Destroy();
 
 	Window* GetWindow()  { return &m_window; }
+	AudioMaster* GetAudioMaster()  { return &m_audioMaster; }
 	static Game* Instance() { return m_instance; }
 protected:
 	void Run();
@@ -23,6 +25,7 @@ private:
 	static Game* m_instance;
 
     Window m_window;
+	AudioMaster m_audioMaster;
 
 	void intialise();
 

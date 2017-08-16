@@ -11,7 +11,7 @@ double Time::ElpasedTime = 0;
 
 Game::Game(int width, int height, const char *title) {
     this->create(width,height,title);
-	m_instance = this;
+	this->m_instance = this;
 }
 
 Game::~Game() {
@@ -34,11 +34,13 @@ void Game::intialise() {
 void Game::Destroy() {
 	SceneManager::Instance()->Destroy();
     AssetManager::Instance()->Destroy();
-    m_window.Destroy();
+	this->m_window.Destroy();
+	this->m_audioMaster.Destroy();
 }
 
 int Game::create(int width, int height, const char *title) {
-    m_window.InitWindow(width,height,title);
+	this->m_window.InitWindow(width,height,title);
+	this->m_audioMaster.Create();
     this->m_isRunning = true;
 	return 0;
 }
@@ -46,9 +48,9 @@ int Game::create(int width, int height, const char *title) {
 
 double last = 0;
 void Game::loop() {
-    while(m_isRunning){
-        if(m_window.ShouldClose() || Input::KeyPress(KEY_ESCAPE)){
-            m_isRunning = false;
+    while(this->m_isRunning){
+        if(this->m_window.ShouldClose() || Input::KeyPress(KEY_ESCAPE)){
+			this->m_isRunning = false;
             return;
         }
 		last = Time::ElpasedTime;

@@ -24,6 +24,16 @@ struct Vector4
 		w = d;
     }
 
+	static Vector4 One()
+    {
+		return Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+    }
+
+	static Vector4 Zero()
+	{
+		return Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+	}
+
     float& operator [](int i)
     {
         return ((&x)[i]);

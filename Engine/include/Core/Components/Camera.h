@@ -7,7 +7,7 @@ class Camera : public Component
 public:
 	Camera(float bottom, float top, float left, float right, float near, float far);
 	Camera() : Component("Camera"){ }
-	~Camera();
+	~Camera() override;
 
 	void CreateProjectionMatrix(float bottom, float top, float left, float right, float near, float far);
 

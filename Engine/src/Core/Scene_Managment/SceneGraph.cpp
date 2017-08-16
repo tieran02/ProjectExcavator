@@ -38,7 +38,7 @@ GameObject* SceneGraph::FindGameObject(GameObject* gameObject)
 
 GameObject* SceneGraph::FindGameObject(const char* name)
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end();)
+	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
 	{
 		if(it->second->GetName() == name)
 		{

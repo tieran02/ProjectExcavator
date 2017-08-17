@@ -32,6 +32,7 @@ void AudioSource::Update()
 
 void AudioSource::Destroy()
 {
+
 }
 
 void AudioSource::SetSource(const char* name)

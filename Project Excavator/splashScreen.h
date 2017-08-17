@@ -4,11 +4,10 @@
 class splashScreen : public Scene
 {
 public:
-	splashScreen(const char* name) : Scene(name), m_time(0){}
+	splashScreen(const char* name) : Scene(name){}
 	void OnLoad() override;
 	void OnUpdate() override;
 	void OnRender() override;
-private:
-	float m_time;
+
 };
 

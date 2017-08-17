@@ -24,6 +24,9 @@
     <ClCompile Include="src\Core\Components\AudioSource.cpp" />
     <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\Math\Math.cpp" />
+    <ClCompile Include="src\Math\Quaternion.cpp" />
+    <ClCompile Include="src\Rendering\Color.cpp" />
+    <ClCompile Include="src\Rendering\SpriteRegion.cpp" />
     <ClCompile Include="src\Resources\AssetManager.cpp" />
     <ClCompile Include="src\Resources\Shader.cpp" />
     <ClCompile Include="src\Core\Components\SpriteRenderer.cpp" />
@@ -37,7 +40,6 @@
     <ClCompile Include="src\Core\Components\Transform.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\glad.c" />
-    <ClCompile Include="src\Math\Quaternion.cpp" />
     <ClCompile Include="src\Core\Components\Camera.cpp" />
     <ClCompile Include="src\Rendering\SpriteBatch.cpp" />
     <ClCompile Include="src\Resources\Asset.cpp" />
@@ -61,6 +63,7 @@
     <ClInclude Include="include\Core\Vertex.h" />
     <ClInclude Include="include\Core\Window.h" />
     <ClInclude Include="include\Debug\Debug.h" />
+    <ClInclude Include="include\Core\Components\Camera.h" />
     <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Math\Matrix3.h" />
     <ClInclude Include="include\Math\Matrix4.h" />
@@ -70,9 +73,9 @@
     <ClInclude Include="include\Math\Vector2.h" />
     <ClInclude Include="include\Math\Vector3.h" />
     <ClInclude Include="include\Math\Vector4.h" />
-    <ClInclude Include="include\Core\Components\Camera.h" />
     <ClInclude Include="include\Rendering\Color.h" />
     <ClInclude Include="include\Rendering\SpriteBatch.h" />
+    <ClInclude Include="include\Rendering\SpriteRegion.h" />
     <ClInclude Include="include\Resources\Asset.h" />
     <ClInclude Include="include\Resources\AssetManager.h" />
     <ClInclude Include="include\Resources\Shader.h" />

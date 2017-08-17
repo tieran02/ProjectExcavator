@@ -3,6 +3,8 @@
 #include "Resources/AssetManager.h"
 #include "Resources/Shader.h"
 #include "Core/Scene_Management/Scene.h"
+#include <chrono>
+#include <thread>
 
 SceneManager* SceneManager::m_instance = 0;
 
@@ -44,6 +46,7 @@ void SceneManager::ReloadScene() const
 		this->m_currentScene->unload();
 		this->m_currentScene->GetSceneGraph().Destroy();
 		AssetManager::Instance()->Destroy();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		addDefaultAssets();
 		this->m_currentScene->load();
 	}
@@ -59,7 +62,8 @@ void SceneManager::UnloadScene()
 		this->m_currentScene->GetSceneGraph().Destroy();
 		this->m_currentScene = nullptr;
 		AssetManager::Instance()->Destroy();
-		addDefaultAssets();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
 	}
 	else
 		LOG_ERROR("No current Scene");
@@ -141,7 +145,8 @@ void SceneManager::addDefaultAssets()
 	uniform sampler2D texture1;
 	void main()
 	{
-		FragColor = texture(texture1, TexCoord) * Color;
+		vec4 texColor = texture(texture1, TexCoord) * Color;
+		FragColor = texColor;
 	}
 	)"";
 

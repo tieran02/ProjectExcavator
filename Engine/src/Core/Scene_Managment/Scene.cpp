@@ -10,6 +10,8 @@ void Scene::load() {
 	m_spriteBatch.Init();
 	m_sceneGrapth.Awake();
 	m_sceneGrapth.Start();
+	this->m_startTime = Time::ElpasedTime;
+
 }
 
 void Scene::unload() {

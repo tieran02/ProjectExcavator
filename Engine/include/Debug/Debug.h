@@ -8,3 +8,4 @@
 
 void FMOD_ERRORCHECK_fn(FMOD_RESULT result, const char *file, int line);
 #define FMOD_ERRORCHECK(_result) FMOD_ERRORCHECK_fn(_result, __FILE__, __LINE__)
+

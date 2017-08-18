@@ -16,3 +16,8 @@ void SpriteRenderer::SetSprite(Sprite* sprite)
 {
 	this->m_sprite = sprite;
 }
+
+void SpriteRenderer::SetDepth(float depth)
+{
+	this->m_depth = depth;
+}

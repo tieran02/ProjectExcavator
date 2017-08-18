@@ -1,5 +1,4 @@
 #pragma once
-
 class Component {
 	friend class GameObject;
 public:

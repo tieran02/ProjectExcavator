@@ -3,7 +3,7 @@
 
 int main()
 {
-	mainGame game(1280, 720, "Test");
+	mainGame game(1280, 720, "Motherload");
 
 	return 0;
 }

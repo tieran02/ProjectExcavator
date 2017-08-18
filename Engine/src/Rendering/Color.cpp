@@ -3,5 +3,5 @@
 
 Color Color::Normilized() const
 {
-	return Color(Math::NormalizeValue(R, 255.0f), Math::NormalizeValue(G, 255.0f), Math::NormalizeValue(B, 255.0f), Math::NormalizeValue(A, 255.0f));
+	return Color(Math::Normalize(R, 255.0f), Math::Normalize(G, 255.0f), Math::Normalize(B, 255.0f), Math::Normalize(A, 255.0f));
 }

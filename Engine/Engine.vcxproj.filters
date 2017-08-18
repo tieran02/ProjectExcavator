@@ -96,6 +96,9 @@
     <ClCompile Include="src\Rendering\SpriteRegion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Components\RigidBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Core\Game.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Rendering\SpriteRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core\Components\RigidBody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

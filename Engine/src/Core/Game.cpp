@@ -4,14 +4,17 @@
 #include "Core/Scene_Management/SceneManager.h"
 #include "Core/Time.h"
 #include "Resources/AssetManager.h"
+#include "Debug/Debug.h"
 
 Game* Game::m_instance = 0;
 double Time::DeltaTime = 0;
 double Time::ElpasedTime = 0;
+double Time::FixedDeltaTime = 0;
 
 Game::Game(int width, int height, const char *title) {
     this->create(width,height,title);
 	this->m_instance = this;
+	this->m_timeStep = 1.0 / 60.0;
 }
 
 Game::~Game() {
@@ -47,14 +50,25 @@ int Game::create(int width, int height, const char *title) {
 
 
 double last = 0;
+double accumulator = 0.0;
 void Game::loop() {
     while(this->m_isRunning){
         if(this->m_window.ShouldClose() || Input::KeyPress(KEY_ESCAPE)){
 			this->m_isRunning = false;
             return;
         }
-		last = Time::ElpasedTime;
 		Time::ElpasedTime = glfwGetTime();
+		Time::DeltaTime = Time::ElpasedTime - last;
+		accumulator += Time::DeltaTime;
+		last = Time::ElpasedTime;
+
+		//fixedupdate
+	    while (accumulator >= this->m_timeStep)
+	    {
+			Time::FixedDeltaTime = accumulator;
+			accumulator -= this->m_timeStep;
+			SceneManager::Instance()->FixedUpdateScene();
+	    }
 
 		this->OnUpdate();
 		SceneManager::Instance()->UpdateScene();
@@ -67,7 +81,7 @@ void Game::loop() {
 		SceneManager::Instance()->RenderScene();
 
         this->m_window.Refresh();
-		Time::DeltaTime = Time::ElpasedTime - last;
+
     }
 }
 

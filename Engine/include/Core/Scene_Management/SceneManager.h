@@ -17,6 +17,7 @@ public:
     void ReloadScene() const;
     void UnloadScene();
     void UpdateScene() const;
+	void FixedUpdateScene() const;
     void RenderScene() const;
 
     void Destroy();

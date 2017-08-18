@@ -7,6 +7,7 @@ public:
 	testScene(const char* name) : Scene(name){}
 	void OnLoad() override;
 	void OnUpdate() override;
+	void OnFixedUpdate() override;
 	void OnRender() override;
 };
 

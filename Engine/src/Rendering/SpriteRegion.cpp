@@ -1,5 +1,6 @@
 #include <Rendering/SpriteRegion.h>
 #include "Debug/Debug.h"
+#include "Math/Math.h"
 
 SpriteRegion::SpriteRegion(float row, float column, float width, float height, Vector2 pixles): m_rect(0, 0, 0, 0), m_row(row), m_column(column), m_width(width), m_height(height), m_pixles(pixles)
 {
@@ -39,8 +40,8 @@ void SpriteRegion::calculateRegion()
 	}
 
 	//Calculate Tex coords
-	this->m_texCoord[0] = Vector2(m_rect.TopLeft().x / this->m_width, m_rect.TopLeft().y / this->m_height); // Top Left
-	this->m_texCoord[1] = Vector2(m_rect.TopRight().x / this->m_width, m_rect.TopRight().y / this->m_height);	//Top Right
-	this->m_texCoord[2] = Vector2(m_rect.BottomRight().x / this->m_width, m_rect.BottomRight().y / this->m_height);	//Bottom Right
-	this->m_texCoord[3] = Vector2(m_rect.BottomLeft().x / this->m_width, m_rect.BottomLeft().y / this->m_height); //Bottom Left
+	this->m_texCoord[0] = Vector2(Math::Clamp01((m_rect.TopLeft().x +0.5f) / this->m_width), Math::Clamp01((m_rect.TopLeft().y + 0.5f) / this->m_height)); // Top Left
+	this->m_texCoord[1] = Vector2(Math::Clamp01((m_rect.TopRight().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.TopRight().y + 0.5f) / this->m_height));	//Top Right
+	this->m_texCoord[2] = Vector2(Math::Clamp01((m_rect.BottomRight().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.BottomRight().y + 0.5f) / this->m_height));	//Bottom Right
+	this->m_texCoord[3] = Vector2(Math::Clamp01((m_rect.BottomLeft().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.BottomLeft().y + 0.5f) / this->m_height)); //Bottom Left
 }

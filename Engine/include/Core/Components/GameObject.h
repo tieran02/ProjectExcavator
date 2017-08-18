@@ -2,6 +2,7 @@
 #include <Core/Components/Component.h>
 #include <vector>
 #include "Transform.h"
+#include "RigidBody.h"
 
 class GameObject
 {
@@ -29,12 +30,16 @@ public:
 
 	std::vector<Component*> m_components;
 
+	RigidBody* GetRigidBody() const { return m_rigidBody; }
+	void SetRigidBody(RigidBody* rb) { m_rigidBody = rb; }
+
 private:
 	unsigned int m_instanceID;
 	const char* m_name;
 	const char* m_tag;
 	GameObject* m_parent;
 	Transform* m_transform;
+	RigidBody* m_rigidBody;
 
 	std::vector<GameObject*> m_children;
 

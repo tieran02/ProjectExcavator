@@ -17,12 +17,15 @@ public:
 
 	Window* GetWindow()  { return &m_window; }
 	AudioMaster* GetAudioMaster()  { return &m_audioMaster; }
+	const double& GetTimeStep() const { return m_timeStep; }
+
 	static Game* Instance() { return m_instance; }
 protected:
 	void Run();
 private:
     bool m_isRunning;
 	static Game* m_instance;
+	double m_timeStep;
 
     Window m_window;
 	AudioMaster m_audioMaster;

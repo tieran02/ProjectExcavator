@@ -16,7 +16,9 @@ public:
 	void SetTexture(Texture2D* texture);
 	float Width() const;
 	float Height() const;
+	//Pixles Per Unit is the amount of pixles that are in a single unit
 	float& PixlesPerUnit() { return m_pixlesPerUnit; }
+	//Sprite region for UVs
 	SpriteRegion* Region() { return &m_region; }
 
 private:

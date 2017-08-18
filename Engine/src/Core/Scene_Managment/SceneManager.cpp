@@ -36,6 +36,8 @@ void SceneManager::LoadScene(const char* name)
 		addDefaultAssets();
 		this->m_currentScene = it->second;
 		this->m_currentScene->load();
+		Time::FixedDeltaTime = 0;
+		Time::DeltaTime = 0;
 	}
 }
 
@@ -46,9 +48,11 @@ void SceneManager::ReloadScene() const
 		this->m_currentScene->unload();
 		this->m_currentScene->GetSceneGraph().Destroy();
 		AssetManager::Instance()->Destroy();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		addDefaultAssets();
 		this->m_currentScene->load();
+		Time::FixedDeltaTime = 0;
+		Time::DeltaTime = 0;
 	}
 	else
 		LOG_ERROR("No current Scene");
@@ -62,8 +66,9 @@ void SceneManager::UnloadScene()
 		this->m_currentScene->GetSceneGraph().Destroy();
 		this->m_currentScene = nullptr;
 		AssetManager::Instance()->Destroy();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		Time::FixedDeltaTime = 0;
+		Time::DeltaTime = 0;
 	}
 	else
 		LOG_ERROR("No current Scene");
@@ -74,6 +79,16 @@ void SceneManager::UpdateScene() const
 	if (this->m_currentScene != nullptr)
 	{
 		this->m_currentScene->update();
+	}
+	else
+		LOG_ERROR("No current Scene");
+}
+
+void SceneManager::FixedUpdateScene() const
+{
+	if (this->m_currentScene != nullptr)
+	{
+		this->m_currentScene->fixedUpdate();
 	}
 	else
 		LOG_ERROR("No current Scene");

@@ -11,6 +11,7 @@ public:
 
 	void Render() override;
 	void SetSprite(Sprite* sprite);
+	void SetDepth(float depth);
 
 	Color& GetColor() { return m_color; }
 private:

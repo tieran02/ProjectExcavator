@@ -32,7 +32,7 @@ namespace Math
 	}
 
 	template <class T>
-	const T& NormalizeValue(const T& value, const T& max)
+	const T& Normalize(const T& value, const T& max)
 	{
 		return value / max;
 	}

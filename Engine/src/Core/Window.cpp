@@ -24,7 +24,7 @@ int Window::InitWindow(int width, int height, const char *title) {
 
     // glfw window creation
     // --------------------
-    this->_window = glfwCreateWindow(this->_width, this->_height, this->_title, NULL, NULL);
+    this->_window = glfwCreateWindow(this->_width, this->_height, this->_title, nullptr, NULL);
     if (this->_window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -69,8 +69,8 @@ void Window::framebuffer_size_callback(GLFWwindow *window, int width, int height
 // make sure the viewport matches the new window dimensions; note that m_width and
     // m_height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
-	if(Camera::MainCamera != nullptr)
-		Camera::MainCamera->CreateProjectionMatrix(0, height, 0, width, 0.1f, 1000.0f);
+	/*if(Camera::MainCamera != nullptr)
+		Camera::MainCamera->CreateProjectionMatrix(0, height, 0, width, 0.1f, 1000.0f);*/
 }
 
 bool Window::ShouldClose() {

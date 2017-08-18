@@ -18,7 +18,7 @@ void splashScreen::OnLoad()
 	AssetManager::Instance()->Add(new Texture2D("splash_texture", "./res/splash.jpg", false));
 
 	GameObject* camera = GetSceneGraph().AddGameObject("Camera");
-	auto cam = static_cast<Camera*>(camera->AddComponent(new Camera));
+	auto cam = static_cast<Camera*>(camera->AddComponent(new Camera(pos.x, pos.y, .1f, 5000.0f)));
 	cam->SetMain();
 
 	auto sprite = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("Splash", "splash_texture", pos.x, pos.y,1)));

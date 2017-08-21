@@ -28,10 +28,10 @@ void testScene::OnLoad()
 	cam->SetMain();
 	AudioListener* audio_listener = static_cast<AudioListener*>(camera->AddComponent(new AudioListener()));
 
-	auto digger = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("digger", "digger_animation",64,64,SpriteRegion(0,8, 2),64)));
- 	auto grass = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("grass", "spritesheet", 64, 64, SpriteRegion(56, 8, 8),64)));
-	auto dirt = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("dirt", "spritesheet", 64, 64, SpriteRegion(57, 8, 8), 64)));
-	auto stone = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("stone", "spritesheet", 64, 64, SpriteRegion(58, 8, 8), 64)));
+	auto digger = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("digger", "digger_animation",SpriteRegion(0,8, 2),64)));
+ 	auto grass = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("grass", "spritesheet", SpriteRegion(56, 8, 8),64)));
+	auto dirt = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("dirt", "spritesheet", SpriteRegion(57, 8, 8), 64)));
+	auto stone = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("stone", "spritesheet", SpriteRegion(58, 8, 8), 64)));
 
 
 	auto music = static_cast<Sound*>(AssetManager::Instance()->Add(new Sound("music","./res/music.mp3")));

@@ -5,17 +5,24 @@
 class SpriteRegion
 {
 public:
-	SpriteRegion(int index, int width, int height);
+	/**
+	 * \brief 
+	 * \param index - sprite index of tilesheet (0 is bottom left)
+	 * \param rows - how many rows in tilesheet
+	 * \param columns - how many columns in tilesheet
+	 */
+	SpriteRegion(int index, int rows, int columns);
 	SpriteRegion();
 
 	~SpriteRegion(){}
 
 	Vector2* TextureCoords();
+	const int& Rows() const { return m_rows; }
+	const int& Columns() const { return m_columns; }
 private:
 	Math::Rectangle m_rect;
-	int m_row, m_column, m_width, m_height;
+	int m_rows, m_columns;
 	int m_index;
-	Vector2 m_pixles;
 	Vector2 m_texCoord[4];
 
 	void calculateRegion();

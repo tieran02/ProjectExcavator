@@ -6,8 +6,22 @@
 class Sprite : public Asset
 {
 public:
-	Sprite(const char* name, const char* textureName, float width, float height, float pixlesPerUnit = 100);
-	Sprite(const char* name, const char* textureName,float width, float height, SpriteRegion region, float pixlesPerUnit = 100);
+	/**
+	* \brief
+	* \param name - name of the sprite in asset table
+	* \param textureName - name of the texture to use
+	* \param pixlesPerUnit - how many pixles in a single unit (E.G 64 pixles in a single unit)
+	*/
+	Sprite(const char* name, const char* textureName, float pixlesPerUnit = 100);
+
+	/**
+	* \brief
+	* \param name - name of the sprite in asset table
+	* \param textureName - name of the texture to use
+	* \param region - sprite region of the required sprite in a tilesheet
+	* \param pixlesPerUnit - how many pixles in a single unit (E.G 64 pixles in a single unit)
+	*/
+	Sprite(const char* name, const char* textureName, SpriteRegion region, float pixlesPerUnit = 100);
 	~Sprite() override;
 
 	void Load() override;

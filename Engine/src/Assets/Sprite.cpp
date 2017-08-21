@@ -1,16 +1,21 @@
 #include <Assets/Sprite.h>
 #include "Assets/AssetManager.h"
 
-Sprite::Sprite(const char* name, const char* textureName, float width, float height, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_width(width), m_height(height), m_pixlesPerUnit(pixlesPerUnit)
+Sprite::Sprite(const char* name, const char* textureName, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_pixlesPerUnit(pixlesPerUnit)
 {
 	this->m_texture = static_cast<Texture2D*>(AssetManager::Instance()->Get(textureName));
 	this->m_region = SpriteRegion();
+	this->m_height = this->m_texture->Height();
+	this->m_width = this->m_texture->Width();
 }
 
-Sprite::Sprite(const char* name, const char* textureName, float width, float height, SpriteRegion region, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_width(width), m_height(height), m_pixlesPerUnit(pixlesPerUnit)
+
+Sprite::Sprite(const char* name, const char* textureName, SpriteRegion region, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_pixlesPerUnit(pixlesPerUnit)
 {
 	this->m_texture = static_cast<Texture2D*>(AssetManager::Instance()->Get(textureName));
 	this->m_region = region;
+	this->m_height = this->m_texture->Height() / region.Columns();
+	this->m_width = this->m_texture->Width() / region.Rows();
 }
 
 

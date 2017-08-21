@@ -23,7 +23,7 @@ void splashScreen::OnLoad()
 	auto cam = static_cast<Camera*>(camera->AddComponent(new Camera(pos.x, pos.y, .1f, 5000.0f)));
 	cam->SetMain();
 
-	auto sprite = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("Splash", "splash_texture", pos.x, pos.y,1)));
+	auto sprite = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("Splash", "splash_texture", 1)));
 
 	game_object = GetSceneGraph().AddGameObject("Splash");
 	sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch())));

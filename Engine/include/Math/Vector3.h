@@ -24,6 +24,21 @@ struct Vector3
 		return Vector3(0.0f, 0.0f, 0.0f);
 	}
 
+	static Vector3 Up()
+	{
+		return Vector3(0.0f, 1.0f, 0.0f);
+	}
+
+	static Vector3 Right()
+	{
+		return Vector3(1.0f, 0.0f, 0.0f);
+	}
+
+	static Vector3 Forward()
+	{
+		return Vector3(0.0f, 0.0f, 1.0f);
+	}
+
     float& operator [](int i)
     {
         return ((&x)[i]);
@@ -71,6 +86,11 @@ struct Vector3
 inline Vector3 operator *(const Vector3& v, float s)
 {
     return (Vector3(v.x * s, v.y * s, v.z * s));
+}
+
+inline Vector3 operator *(float s, const Vector3& v)
+{
+	return (Vector3(v.x * s, v.y * s, v.z * s));
 }
 
 inline Vector3 operator /(const Vector3& v, float s)

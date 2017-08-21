@@ -28,6 +28,10 @@ public:
     void SetRotation(Quaternion rot);
 	Vector3& Velocity() { return m_velocity; }
 
+	Vector2 Up() const;
+
+	Vector2 Right() const;
+
 private:
     Matrix4 m_translationMatrix;
     Matrix4 m_scaleMatrix;

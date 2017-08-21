@@ -7,12 +7,13 @@ class RigidBody : public Component
 {
 public:
 	RigidBody(Vector2 dimensions, bool dynamic);
-	RigidBody(Vector2 dimensions, bool dynamic, float mass, float friction);
+	RigidBody(Vector2 dimensions, bool dynamic, bool fixedRotation , float mass, float friction);
 
 	void Awake() override;
 	void FixedUpdate() override;
 
-	void SetVelocity(Vector2 velocity);
+	void SetVelocity(Vector2 velocity) const;
+	Vector2 GetVelocity() const;
 
 private:
 	b2Body* m_body;
@@ -21,6 +22,7 @@ private:
 	float m_friction;
 	Vector2 m_dimension;
 	bool m_dynamic;
+	bool m_fixed;
 
 	void addToWorld();
 };

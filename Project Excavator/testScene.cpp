@@ -31,8 +31,8 @@ void testScene::OnLoad()
 	AudioListener* audio_listener = static_cast<AudioListener*>(camera->AddComponent(new AudioListener()));
 
 	auto digger = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("digger", "digger_animation",SpriteRegion(0,8, 2),64)));
-	auto diggerIdle = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_idle", "digger_animation",8,2,8,15,64)));
-	auto diggerRunning = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_running", "digger_animation", 8, 2, 0, 7, 64)));
+	auto diggerIdle = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_idle", "digger_animation",8,2,0,7,64)));
+	auto diggerRunning = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_running", "digger_animation", 8, 2, 8, 15, 64)));
 
  	auto grass = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("grass", "spritesheet", SpriteRegion(56, 8, 8),64)));
 	auto dirt = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("dirt", "spritesheet", SpriteRegion(57, 8, 8), 64)));
@@ -45,9 +45,10 @@ void testScene::OnLoad()
 	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch(),digger)));
 	auto* sprite_animator = static_cast<SpriteAnimator*>(game_object->AddComponent(new SpriteAnimator(diggerRunning,16)));
 
+
 	audio_source = static_cast<AudioSource*>(game_object->AddComponent(new AudioSource("music")));
 	game_object->GetTransform().SetPosition(Vector2(0, 4));
-	RigidBody* rigid_body = static_cast<RigidBody*>(game_object->AddComponent(new RigidBody(Vector2(0.95f, 0.95f),true,1.0f,0.3f)));
+	RigidBody* rigid_body = static_cast<RigidBody*>(game_object->AddComponent(new RigidBody(Vector2(1.0f, 0.95f),true,true,1.0f,0.3f)));
 
 	for (int i = -50; i < 50; i++)
 	{
@@ -97,6 +98,15 @@ void testScene::OnUpdate()
 		audio_source->Stop();
 	}
 
+	if (Input::KeyPress(KEY_3))
+	{
+		glfwSwapInterval(0);
+	}
+	if (Input::KeyPress(KEY_4))
+	{
+		glfwSwapInterval(1);
+	}
+
 	if(Input::KeyPress(KEY_F1))
 	{
 		cam->SetSize(0.75f);
@@ -120,15 +130,25 @@ void testScene::OnFixedUpdate()
 	GameObject* game_object = GetSceneGraph().FindGameObject("digger");
 	if (Input::KeyDown(KEY_D))
 	{
+		Quaternion q;
+		q.EulerAngles(Vector3(0, 1, 0), Radians::FromDegrees(0));
+		game_object->GetTransform().SetRotation(q);
+		game_object->GetRigidBody()->SetVelocity(Vector2(game_object->GetTransform().Right().x * 5.0f, game_object->GetRigidBody()->GetVelocity().y));
+
 	}
 
 	if (Input::KeyDown(KEY_A))
 	{
+		Quaternion q;
+		q.EulerAngles(Vector3(0, 1, 0), Radians::FromDegrees(180));
+		game_object->GetTransform().SetRotation(q);
+		game_object->GetRigidBody()->SetVelocity(Vector2(game_object->GetTransform().Right().x * 5.0f, game_object->GetRigidBody()->GetVelocity().y));
+
 	}
 
 	if (Input::KeyDown(KEY_W))
 	{
-		game_object->GetRigidBody()->SetVelocity(Vector2(0, 10));
+		game_object->GetRigidBody()->SetVelocity(Vector2(game_object->GetRigidBody()->GetVelocity().x, 10));
 
 	}
 

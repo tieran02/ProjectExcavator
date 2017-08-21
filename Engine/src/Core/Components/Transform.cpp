@@ -65,6 +65,18 @@ void Transform::SetRotation(Quaternion rot) {
     updateRotationMatrix();
 }
 
+Vector2 Transform::Up() const
+{
+	Vector3 up = m_rotation * Vector3::Up();
+	return Vector2(up.x, up.y);
+}
+
+Vector2 Transform::Right() const
+{
+	Vector3 right = m_rotation * Vector3::Right();
+	return Vector2(right.x, right.y);
+}
+
 void Transform::updateTranslationMatrix() {
     this->m_translationMatrix(0,3) = this->m_position.x;
     this->m_translationMatrix(1,3) = this->m_position.y;

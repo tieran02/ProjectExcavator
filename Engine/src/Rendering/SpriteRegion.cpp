@@ -2,7 +2,7 @@
 #include "Debug/Debug.h"
 #include "Math/Math.h"
 
-SpriteRegion::SpriteRegion(float row, float column, float width, float height, Vector2 pixles): m_rect(0, 0, 0, 0), m_row(row), m_column(column), m_width(width), m_height(height), m_pixles(pixles)
+SpriteRegion::SpriteRegion(int index, int width, int height): m_rect(0, 0, 0, 0), m_width(width), m_height(height), m_index(index)
 {
 	calculateRegion();
 }
@@ -22,26 +22,17 @@ Vector2* SpriteRegion::TextureCoords()
 
 void SpriteRegion::calculateRegion()
 {
-	float numRows = this->m_width / this->m_pixles.x;
-	float numColumns = this->m_height / this->m_pixles.y;
 
-	//Check if region is within sprite sheet
-	if (this->m_row < numRows && this->m_column < numColumns)
-	{
-		float x = this->m_row * this->m_pixles.x;
-		float y = this->m_column * this->m_pixles.y;
-		this->m_rect = Math::Rectangle(x, y, m_pixles.x, m_pixles.y);
-	}
-	else
-	{
-		//if out of bounds return first region
-		LOG_WARNING("Sprite Region Out of Bounds!");
-		this->m_rect = Math::Rectangle(0, 0, m_pixles.x, m_pixles.y);
-	}
+	int x = this->m_index % m_width;
+	int y = this->m_index / m_height;
+
+	this->m_rect = Math::Rectangle(x/ (float)m_width, y / (float)m_height, 1.0f / m_width, 1.0f / m_height);
+
+
 
 	//Calculate Tex coords
-	this->m_texCoord[0] = Vector2(Math::Clamp01((m_rect.TopLeft().x +0.5f) / this->m_width), Math::Clamp01((m_rect.TopLeft().y + 0.5f) / this->m_height)); // Top Left
-	this->m_texCoord[1] = Vector2(Math::Clamp01((m_rect.TopRight().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.TopRight().y + 0.5f) / this->m_height));	//Top Right
-	this->m_texCoord[2] = Vector2(Math::Clamp01((m_rect.BottomRight().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.BottomRight().y + 0.5f) / this->m_height));	//Bottom Right
-	this->m_texCoord[3] = Vector2(Math::Clamp01((m_rect.BottomLeft().x + 0.5f) / this->m_width), Math::Clamp01((m_rect.BottomLeft().y + 0.5f) / this->m_height)); //Bottom Left
+	this->m_texCoord[0] = Vector2(Math::Clamp01((m_rect.TopLeft().x ) ), Math::Clamp01((m_rect.TopLeft().y ))); // Top Left
+	this->m_texCoord[1] = Vector2(Math::Clamp01((m_rect.TopRight().x ) ), Math::Clamp01((m_rect.TopRight().y )));	//Top Right
+	this->m_texCoord[2] = Vector2(Math::Clamp01((m_rect.BottomRight().x ) ), Math::Clamp01((m_rect.BottomRight().y )));	//Bottom Right
+	this->m_texCoord[3] = Vector2(Math::Clamp01((m_rect.BottomLeft().x ) ), Math::Clamp01((m_rect.BottomLeft().y ))); //Bottom Left
 }

@@ -3,8 +3,8 @@
 #include <vector>
 #include <Core/Components/Transform.h>
 #include <Rendering/Color.h>
-#include "Resources/Texture2D.h"
-#include "Resources/Sprite.h"
+#include "Assets/Texture2D.h"
+#include "Assets/Sprite.h"
 
 class SpriteBatch {
 	enum class SpriteSortType {

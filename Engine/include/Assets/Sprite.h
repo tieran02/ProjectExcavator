@@ -7,7 +7,7 @@ class Sprite : public Asset
 {
 public:
 	Sprite(const char* name, const char* textureName, float width, float height, float pixlesPerUnit = 100);
-	Sprite(const char* name, const char* textureName, float row, float column,float width, float height, Vector2 pixles, float pixlesPerUnit = 100);
+	Sprite(const char* name, const char* textureName,float width, float height, SpriteRegion region, float pixlesPerUnit = 100);
 	~Sprite() override;
 
 	void Load() override;

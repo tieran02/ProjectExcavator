@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Resources/Sound.h"
+#include "Assets/Sound.h"
 
 class AudioSource : public Component
 {

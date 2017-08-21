@@ -1,5 +1,5 @@
-#include <Resources/Sprite.h>
-#include "Resources/AssetManager.h"
+#include <Assets/Sprite.h>
+#include "Assets/AssetManager.h"
 
 Sprite::Sprite(const char* name, const char* textureName, float width, float height, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_width(width), m_height(height), m_pixlesPerUnit(pixlesPerUnit)
 {
@@ -7,10 +7,10 @@ Sprite::Sprite(const char* name, const char* textureName, float width, float hei
 	this->m_region = SpriteRegion();
 }
 
-Sprite::Sprite(const char* name, const char* textureName, float row, float column, float width, float height, Vector2 pixles, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_width(width), m_height(height), m_pixlesPerUnit(pixlesPerUnit)
+Sprite::Sprite(const char* name, const char* textureName, float width, float height, SpriteRegion region, float pixlesPerUnit) : Asset(AssetType::SPRITE, name), m_texture(nullptr), m_width(width), m_height(height), m_pixlesPerUnit(pixlesPerUnit)
 {
 	this->m_texture = static_cast<Texture2D*>(AssetManager::Instance()->Get(textureName));
-	this->m_region = SpriteRegion(row, column, m_texture->Width(), m_texture->Height(), pixles);
+	this->m_region = region;
 }
 
 

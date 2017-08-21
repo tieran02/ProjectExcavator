@@ -1,7 +1,7 @@
 #include <Core/Scene_Management/SceneManager.h>
 #include "Debug/Debug.h"
-#include "Resources/AssetManager.h"
-#include "Resources/Shader.h"
+#include "Assets/AssetManager.h"
+#include "Assets/Shader.h"
 #include "Core/Scene_Management/Scene.h"
 #include <chrono>
 #include <thread>

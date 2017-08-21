@@ -3,8 +3,8 @@
 
 #include "Core/Scene_Management/SceneManager.h"
 #include "Core/Time.h"
-#include "Resources/AssetManager.h"
-#include "Debug/Debug.h"
+#include "Assets/AssetManager.h"
+
 
 Game* Game::m_instance = 0;
 double Time::DeltaTime = 0;

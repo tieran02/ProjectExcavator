@@ -1,5 +1,5 @@
 #include "splashScreen.h"
-#include "Resources/AssetManager.h"
+#include "Assets/AssetManager.h"
 #include "Core/Components/Camera.h"
 #include "Core/Components/SpriteRenderer.h"
 #include "Core/Game.h"
@@ -7,6 +7,8 @@
 #include "Core/Scene_Management/SceneManager.h"
 #include "Debug/Debug.h"
 #include "Core/Input.h"
+#include <Assets/Texture2D.h>
+#include <Assets/Sprite.h>
 
 GameObject* game_object;
 SpriteRenderer* sprite_renderer;

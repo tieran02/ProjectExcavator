@@ -28,8 +28,8 @@
     <ClCompile Include="src\Math\Quaternion.cpp" />
     <ClCompile Include="src\Rendering\Color.cpp" />
     <ClCompile Include="src\Rendering\SpriteRegion.cpp" />
-    <ClCompile Include="src\Resources\AssetManager.cpp" />
-    <ClCompile Include="src\Resources\Shader.cpp" />
+    <ClCompile Include="src\Assets\AssetManager.cpp" />
+    <ClCompile Include="src\Assets\Shader.cpp" />
     <ClCompile Include="src\Core\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Core\Scene_Managment\SceneManager.cpp" />
     <ClCompile Include="src\Core\Components\Component.cpp" />
@@ -43,12 +43,13 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\Core\Components\Camera.cpp" />
     <ClCompile Include="src\Rendering\SpriteBatch.cpp" />
-    <ClCompile Include="src\Resources\Asset.cpp" />
-    <ClCompile Include="src\Resources\Sound.cpp" />
-    <ClCompile Include="src\Resources\Sprite.cpp" />
-    <ClCompile Include="src\Resources\Texture2D.cpp" />
+    <ClCompile Include="src\Assets\Asset.cpp" />
+    <ClCompile Include="src\Assets\Sound.cpp" />
+    <ClCompile Include="src\Assets\Sprite.cpp" />
+    <ClCompile Include="src\Assets\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Assets\Animation.h" />
     <ClInclude Include="include\Core\AudioMaster.h" />
     <ClInclude Include="include\Core\Components\AudioListener.h" />
     <ClInclude Include="include\Core\Components\AudioSource.h" />
@@ -78,12 +79,12 @@
     <ClInclude Include="include\Rendering\Color.h" />
     <ClInclude Include="include\Rendering\SpriteBatch.h" />
     <ClInclude Include="include\Rendering\SpriteRegion.h" />
-    <ClInclude Include="include\Resources\Asset.h" />
-    <ClInclude Include="include\Resources\AssetManager.h" />
-    <ClInclude Include="include\Resources\Shader.h" />
-    <ClInclude Include="include\Resources\Sound.h" />
-    <ClInclude Include="include\Resources\Sprite.h" />
-    <ClInclude Include="include\Resources\Texture2D.h" />
+    <ClInclude Include="include\Assets\Asset.h" />
+    <ClInclude Include="include\Assets\AssetManager.h" />
+    <ClInclude Include="include\Assets\Shader.h" />
+    <ClInclude Include="include\Assets\Sound.h" />
+    <ClInclude Include="include\Assets\Sprite.h" />
+    <ClInclude Include="include\Assets\Texture2D.h" />
     <ClInclude Include="include\Core\Scene_Management\Scene.h" />
     <ClInclude Include="include\Core\Scene_Management\SceneManager.h" />
   </ItemGroup>

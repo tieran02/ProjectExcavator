@@ -1,7 +1,7 @@
 #include <Core/Components/Camera.h>
 #include "Core/Game.h"
-#include "Resources/Shader.h"
-#include "Resources/AssetManager.h"
+#include "Assets/Shader.h"
+#include "Assets/AssetManager.h"
 
 Camera* Camera::MainCamera = nullptr;
 

@@ -5,7 +5,7 @@
 class SpriteRegion
 {
 public:
-	SpriteRegion(float row, float column, float width, float height, Vector2 pixles);
+	SpriteRegion(int index, int width, int height);
 	SpriteRegion();
 
 	~SpriteRegion(){}
@@ -13,7 +13,8 @@ public:
 	Vector2* TextureCoords();
 private:
 	Math::Rectangle m_rect;
-	float m_row, m_column, m_width, m_height;
+	int m_row, m_column, m_width, m_height;
+	int m_index;
 	Vector2 m_pixles;
 	Vector2 m_texCoord[4];
 

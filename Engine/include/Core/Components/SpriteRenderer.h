@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Rendering/SpriteBatch.h"
-#include <Resources/Sprite.h>
+#include <Assets/Sprite.h>
 #include <Rendering/Color.h>
 
 class SpriteRenderer : public Component

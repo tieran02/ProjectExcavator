@@ -1,5 +1,5 @@
 #include <Core/Components/AudioSource.h>
-#include "Resources/AssetManager.h"
+#include "Assets/AssetManager.h"
 #include "Core/Components/GameObject.h"
 #include "Core/Game.h"
 #include "Debug/Debug.h"

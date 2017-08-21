@@ -21,8 +21,8 @@ public:
 	const float& GetSize() const { return m_size; }
 	void SetSize(float size)
 	{
-		CreateProjectionMatrix(0, m_height * size, 0, m_width * size, m_near, m_far);
 		m_size = size;
+		CreateProjectionMatrix(0, m_height * m_size, 0, m_width * m_size, m_near, m_far);
 	}
 
 private:

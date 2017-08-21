@@ -1,4 +1,4 @@
-#include <Resources/AssetManager.h>
+#include <Assets/AssetManager.h>
 
 AssetManager* AssetManager::m_instance = 0;
 

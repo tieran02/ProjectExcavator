@@ -3,8 +3,8 @@
 //
 #include "Rendering/SpriteBatch.h"
 #include "Core/Vertex.h"
-#include "Resources/Shader.h"
-#include "Resources/AssetManager.h"
+#include "Assets/Shader.h"
+#include "Assets/AssetManager.h"
 #include <algorithm>
 
 const Vertex vertices[6] = {
@@ -123,7 +123,7 @@ void SpriteBatch::createRenderBatches() {
 	for (int i = 1; i < m_spritePointers.size(); i++)
 	{	
 		transform = m_spritePointers[i]->Transform->TransformMatrix();
-		size = (Vector2(m_spritePointers[i]->Sprite->Width(), m_spritePointers[i]->Sprite->Height()) / m_spritePointers[0]->Sprite->PixlesPerUnit());
+		size = (Vector2(m_spritePointers[i]->Sprite->Width(), m_spritePointers[i]->Sprite->Height()) / m_spritePointers[i]->Sprite->PixlesPerUnit());
 		uv = m_spritePointers[i]->Sprite->Region()->TextureCoords();
 
 		if(m_spritePointers[i]->Sprite->GetTexture()->GetTextureID() != m_spritePointers[i-1]->Sprite->GetTexture()->GetTextureID())

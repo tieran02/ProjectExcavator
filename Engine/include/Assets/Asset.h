@@ -7,6 +7,7 @@ public:
 		SHADER,
 		TEXTURE,
 		SPRITE,
+		ANIMATION,
 		SOUND,
 		TEXT
 	};

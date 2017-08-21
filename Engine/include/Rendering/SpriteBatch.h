@@ -5,6 +5,7 @@
 #include <Rendering/Color.h>
 #include "Assets/Texture2D.h"
 #include "Assets/Sprite.h"
+#include "Assets/Animation.h"
 
 class SpriteBatch {
 	enum class SpriteSortType {
@@ -32,6 +33,7 @@ public:
     void End();
 
 	void Draw(Sprite* sprite, float depth, Transform* transform, Color color);
+
 
     void Render();
 private:

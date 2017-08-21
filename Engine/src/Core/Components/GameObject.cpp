@@ -61,12 +61,6 @@ Component* GameObject::FindComponentName(const char* name)
 	return nullptr;
 }
 
-template <typename T>
-T* GameObject::FindComponentByType()
-{
-	return nullptr;
-}
-
 void GameObject::SetParent(GameObject* gameObject)
 {
 	this->m_parent = gameObject;

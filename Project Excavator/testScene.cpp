@@ -9,6 +9,8 @@
 #include "Core/Components/AudioSource.h"
 #include "Debug/Debug.h"
 #include "Core/Components/AudioListener.h"
+#include "Assets/Animation.h"
+#include "Core/Components/SpriteAnimator.h"
 
 AudioSource* audio_source;
 Camera* cam;
@@ -29,6 +31,9 @@ void testScene::OnLoad()
 	AudioListener* audio_listener = static_cast<AudioListener*>(camera->AddComponent(new AudioListener()));
 
 	auto digger = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("digger", "digger_animation",SpriteRegion(0,8, 2),64)));
+	auto diggerIdle = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_idle", "digger_animation",8,2,8,15,64)));
+	auto diggerRunning = static_cast<Animation*>(AssetManager::Instance()->Add(new Animation("digger_running", "digger_animation", 8, 2, 0, 7, 64)));
+
  	auto grass = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("grass", "spritesheet", SpriteRegion(56, 8, 8),64)));
 	auto dirt = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("dirt", "spritesheet", SpriteRegion(57, 8, 8), 64)));
 	auto stone = static_cast<Sprite*>(AssetManager::Instance()->Add(new Sprite("stone", "spritesheet", SpriteRegion(58, 8, 8), 64)));
@@ -37,9 +42,10 @@ void testScene::OnLoad()
 	auto music = static_cast<Sound*>(AssetManager::Instance()->Add(new Sound("music","./res/music.mp3")));
 
 	GameObject* game_object = GetSceneGraph().AddGameObject("digger");
-	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch())));
+	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch(),digger)));
+	auto* sprite_animator = static_cast<SpriteAnimator*>(game_object->AddComponent(new SpriteAnimator(diggerRunning,16)));
+
 	audio_source = static_cast<AudioSource*>(game_object->AddComponent(new AudioSource("music")));
-	sprite_renderer->SetSprite(digger);
 	game_object->GetTransform().SetPosition(Vector2(0, 4));
 	RigidBody* rigid_body = static_cast<RigidBody*>(game_object->AddComponent(new RigidBody(Vector2(0.95f, 0.95f),true,1.0f,0.3f)));
 
@@ -61,10 +67,15 @@ void testScene::OnLoad()
 
 			GameObject* game_object1 = GetSceneGraph().AddGameObject("dirt");
 			SpriteRenderer* sprite_renderer1 = static_cast<SpriteRenderer*>(game_object1->AddComponent(new SpriteRenderer(GetSpriteBatch())));
-			sprite_renderer1->SetSprite(dirt);
 			sprite_renderer1->SetDepth(1);
 			game_object1->GetTransform().SetPosition(Vector2(i, -y));
 			RigidBody* rigid_body1 = static_cast<RigidBody*>(game_object1->AddComponent(new RigidBody(Vector2(1, 1), false)));
+
+			if(y > 4)
+			{
+				sprite_renderer1->SetSprite(stone);
+			}else
+				sprite_renderer1->SetSprite(dirt);
 		}
 	}
 

@@ -18,7 +18,17 @@ public:
 	Component* AddComponent(Component* componenet);
 	Component* FindComponentName(const char* name);
 
-	template <typename T> T* FindComponentByType();
+	template <typename T> T* FindComponentByType()
+	{
+		for (auto itr = m_components.begin(); itr != m_components.end(); ++itr)
+		{
+			if (T* type = dynamic_cast<T*>(*itr))
+			{
+				return type;
+			}
+		}
+		return nullptr;
+	};
 
 	void SetParent(GameObject* gameObject);
 	GameObject* FindChildByName(const char* name);

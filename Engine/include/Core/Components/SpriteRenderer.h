@@ -7,6 +7,7 @@
 class SpriteRenderer : public Component
 {
 public:
+	SpriteRenderer(SpriteBatch* spriteBatch, Sprite* sprite);
 	SpriteRenderer(SpriteBatch* spriteBatch);
 
 	void Render() override;

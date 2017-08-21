@@ -54,6 +54,7 @@ void SpriteBatch::Draw(Sprite* sprite, float depth, Transform* transform, Color 
     m_sprites.emplace_back(sprite, depth,transform,color);
 }
 
+
 void SpriteBatch::Render() {
 	//Bind vao
 	Shader* shader = static_cast<Shader*>(AssetManager::Instance()->Get("sprite_shader"));

@@ -24,7 +24,7 @@ void SpriteRegion::calculateRegion()
 {
 
 	int x = this->m_index % m_rows;
-	int y = this->m_index / m_columns;
+	int y = this->m_index / m_rows;
 
 	this->m_rect = Math::Rectangle(x/ (float)m_rows, y / (float)m_columns, 1.0f / m_rows, 1.0f / m_columns);
 

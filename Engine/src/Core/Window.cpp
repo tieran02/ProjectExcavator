@@ -78,5 +78,8 @@ bool Window::ShouldClose() {
 }
 
 void Window::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
-    Input::SetState(key, action);
+	if(action == GLFW_PRESS)
+		Input::SetState(key , true);
+	if (action == GLFW_RELEASE)
+		Input::SetState(key, false);
 }

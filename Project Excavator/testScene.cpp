@@ -89,11 +89,11 @@ void testScene::OnUpdate()
 		SceneManager::Instance()->ReloadScene();
 	}
 
-	if(Input::KeyPress(KEY_1))
+	if(Input::KeyUp(KEY_1))
 	{
 		audio_source->Play();
 	}
-	if (Input::KeyPress(KEY_2))
+	if (Input::KeyUp(KEY_2))
 	{
 		audio_source->Stop();
 	}
@@ -128,6 +128,8 @@ void testScene::OnUpdate()
 void testScene::OnFixedUpdate()
 {
 	GameObject* game_object = GetSceneGraph().FindGameObject("digger");
+	game_object->GetRigidBody()->SetVelocity(Vector2(0, game_object->GetRigidBody()->GetVelocity().y));
+
 	if (Input::KeyDown(KEY_D))
 	{
 		Quaternion q;
@@ -146,7 +148,7 @@ void testScene::OnFixedUpdate()
 
 	}
 
-	if (Input::KeyDown(KEY_W))
+	if (Input::KeyPress(KEY_W))
 	{
 		game_object->GetRigidBody()->SetVelocity(Vector2(game_object->GetRigidBody()->GetVelocity().x, 10));
 

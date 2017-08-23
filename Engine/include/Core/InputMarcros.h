@@ -1,8 +1,9 @@
 #pragma once
 
-#define STATE_RELEASE 0
-#define STATE_PRESS 1
-#define STATE_DOWN 2
+#define STATE_NONE 0
+#define STATE_RELEASE 1
+#define STATE_PRESS 2
+#define STATE_DOWN 3
 
 #define 	KEY_SPACE   32
 #define 	KEY_APOSTROPHE   39 /* ' */

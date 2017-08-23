@@ -62,6 +62,8 @@ void Game::loop() {
 		accumulator += Time::DeltaTime;
 		last = Time::ElpasedTime;
 
+		Input::Instance()->Update();
+
 		//fixedupdate
 	    while (accumulator >= this->m_timeStep)
 	    {

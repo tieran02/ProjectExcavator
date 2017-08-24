@@ -29,7 +29,7 @@ GameObject::GameObject(const char* name, unsigned id)
 
 GameObject::~GameObject()
 {
-	Destroy(true);
+	deleteComponents();
 }
 
 void GameObject::Create()

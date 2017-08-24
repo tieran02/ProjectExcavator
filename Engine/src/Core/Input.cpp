@@ -1,7 +1,3 @@
-//
-// Created by tieran on 31/07/17.
-//
-
 #include <Core/Input.h>
 
 Input *Input::_instance = 0;
@@ -10,22 +6,22 @@ bool Input::KeyPress(int key) {
 
     if(Instance()->m_state[key].currentState == STATE_PRESS)
         return true;
-    else
-        return false;
+
+	return false;
 }
 
 bool Input::KeyDown(int key) {
-    if(Instance()->m_state[key].currentState == STATE_DOWN)
+    if(Instance()->m_state[key].currentState == STATE_PRESS || Instance()->m_state[key].currentState == STATE_DOWN)
         return true;
-    else
-        return false;
+
+	return false;
 }
 
 bool Input::KeyUp(int key) {
     if(Instance()->m_state[key].currentState == STATE_RELEASE)
         return true;
-    else
-        return false;
+
+	return false;
 }
 
 void Input::SetState(int key, bool press) 

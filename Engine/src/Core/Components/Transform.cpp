@@ -1,8 +1,5 @@
-//
-// Created by tieran on 03/08/17.
-//
-
 #include <Core/Components/Transform.h>
+#include <Core/Components/GameObject.h>
 #include "Core/Time.h"
 
 
@@ -14,7 +11,23 @@ void Transform::Update()
 }
 
 Matrix4 Transform::TransformMatrix() const {
-    return this->m_translationMatrix * this->m_rotationMatrix * this->m_scaleMatrix;
+	//if the transforms game object has parent then multiply thier transforms
+	if (GetGameObject().GetParent() != nullptr)
+	{
+		Matrix4 transform;
+		//loop parents
+		GameObject* current = GetGameObject().GetParent();
+		while (true)
+		{
+			transform = transform * current->GetTransform().TransformMatrix();
+			current = current->GetParent();
+			if(current == nullptr)
+				break;
+		}
+
+		return this->m_translationMatrix * this->m_rotationMatrix * this->m_scaleMatrix * transform;
+	}
+	return this->m_translationMatrix * this->m_rotationMatrix * this->m_scaleMatrix;
 }
 
 Matrix4& Transform::TranslationMatrix()  {

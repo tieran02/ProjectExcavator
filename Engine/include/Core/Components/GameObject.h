@@ -3,6 +3,7 @@
 #include <vector>
 #include "Transform.h"
 #include "RigidBody.h"
+#include <unordered_map>
 
 class GameObject
 {
@@ -13,7 +14,7 @@ public:
 	~GameObject();
 
 	void Create();
-	void Destroy();
+	void Destroy(bool destroyChildren);
 
 	Component* AddComponent(Component* componenet);
 	Component* FindComponentName(const char* name);
@@ -31,14 +32,20 @@ public:
 	};
 
 	void SetParent(GameObject* gameObject);
+	GameObject* GetParent() const { return m_parent; }
+	void AddChild(GameObject* gameObject);
+	void RemoveChild(GameObject* gameObject);
+
 	GameObject* FindChildByName(const char* name);
 	std::vector<GameObject*> FindAllChildrenByName(const char* name);
 
 	const char* GetName() const { return m_name; }
+	const int GetID() const { return m_instanceID; }
 
 	Transform& GetTransform() const { return *m_transform; }
 
-	std::vector<Component*> m_components;
+	std::vector<Component*>& Components() { return m_components; }
+	std::unordered_map<unsigned int, GameObject*>& Children() { return m_children; }
 
 	RigidBody* GetRigidBody() const { return m_rigidBody; }
 	void SetRigidBody(RigidBody* rb) { m_rigidBody = rb; }
@@ -51,8 +58,10 @@ private:
 	Transform* m_transform;
 	RigidBody* m_rigidBody;
 
-	std::vector<GameObject*> m_children;
+	std::vector<Component*> m_components;
+	std::unordered_map<unsigned int,GameObject*> m_children;
 
 	void deleteComponents();
 	void moveChildren();
+	void deleteChildren();
 };

@@ -45,6 +45,9 @@ void testScene::OnLoad()
 	SpriteRenderer* sprite_renderer = static_cast<SpriteRenderer*>(game_object->AddComponent(new SpriteRenderer(GetSpriteBatch(),digger)));
 	auto* sprite_animator = static_cast<SpriteAnimator*>(game_object->AddComponent(new SpriteAnimator(diggerRunning,16)));
 
+	GameObject* game_object_child = GetSceneGraph().AddGameObject("digger1");
+	game_object_child->SetParent(game_object);
+
 
 	audio_source = static_cast<AudioSource*>(game_object->AddComponent(new AudioSource("music")));
 	game_object->GetTransform().SetPosition(Vector2(0, 4));
@@ -89,11 +92,11 @@ void testScene::OnUpdate()
 		SceneManager::Instance()->ReloadScene();
 	}
 
-	if(Input::KeyUp(KEY_1))
+	if(Input::KeyPress(KEY_1))
 	{
 		audio_source->Play();
 	}
-	if (Input::KeyUp(KEY_2))
+	if (Input::KeyPress(KEY_2))
 	{
 		audio_source->Stop();
 	}
@@ -121,14 +124,15 @@ void testScene::OnUpdate()
 	}
 	if (Input::KeyPress(KEY_F4))
 	{
-		cam->SetSize(2.0f);
+		GetSceneGraph().RemoveGameObject("digger");
 	}
 }
 
 void testScene::OnFixedUpdate()
 {
 	GameObject* game_object = GetSceneGraph().FindGameObject("digger");
-	game_object->GetRigidBody()->SetVelocity(Vector2(0, game_object->GetRigidBody()->GetVelocity().y));
+	if(game_object != nullptr)
+		game_object->GetRigidBody()->SetVelocity(Vector2(0, game_object->GetRigidBody()->GetVelocity().y));
 
 	if (Input::KeyDown(KEY_D))
 	{

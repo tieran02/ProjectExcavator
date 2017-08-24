@@ -1,4 +1,5 @@
 #pragma once
+
 class Component {
 	friend class GameObject;
 public:
@@ -23,7 +24,7 @@ public:
 
 	const char* GetName() const { return m_name; }
 	GameObject& GetGameObject() const { return *m_gameObject; }
-	bool IsUnqie() const { return m_unqie; }
+	bool IsUnique() const { return m_unique; }
 	bool& Enabled() { return m_isEnabled; }
 
 private:
@@ -31,5 +32,5 @@ private:
 	GameObject* m_gameObject;
 	Component* m_dependentComponent;
 	bool m_isEnabled;
-	bool m_unqie;
+	bool m_unique;
 };

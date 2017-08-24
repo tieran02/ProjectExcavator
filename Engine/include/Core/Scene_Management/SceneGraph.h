@@ -34,5 +34,5 @@ private:
 
 	// Find and delete a gameobject from the scene graph and clear the memory
 	// Also delete and clears the children attached to the game object recurrsivly
-	void DestroyGameobject(GameObject* gameObject);
+	void destroyGameobject(GameObject* gameObject);
 };

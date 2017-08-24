@@ -24,7 +24,7 @@ Component::Component(const char* name,bool unique)
 	this->m_isEnabled = true;
 	this->m_gameObject = nullptr;
 	this->m_dependentComponent = nullptr;
-	this->m_unqie = unique;
+	this->m_unique = unique;
 	this->Component::Awake();
 }
 

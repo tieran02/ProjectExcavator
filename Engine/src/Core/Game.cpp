@@ -62,11 +62,11 @@ void Game::loop() {
 		accumulator += Time::DeltaTime;
 		last = Time::ElpasedTime;
 
-		Input::Update();
-
 		//fixedupdate
 	    while (accumulator >= this->m_timeStep)
 	    {
+			Input::Update();
+
 			Time::FixedDeltaTime = accumulator;
 			accumulator -= this->m_timeStep;
 			SceneManager::Instance()->FixedUpdateScene();

@@ -73,6 +73,13 @@ GameObject* SceneGraph::FindGameObject(const char* name)
 std::vector<GameObject*> SceneGraph::FindAllGameObjectsByName(const char* name)
 {
 	std::vector<GameObject*> game_objects;
+	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
+	{
+		if (it->second->GetName() == name)
+		{
+			game_objects.push_back(it->second);
+		}
+	}
 	return game_objects;
 }
 

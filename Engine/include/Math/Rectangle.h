@@ -21,7 +21,7 @@ namespace Math {
 
 		bool Overlap(Rectangle& R2) const
 		{
-			if (Left() < R2.Right() && Right() > R2.Left() && Top() > R2.Bottom() && Bottom() < R2.Top())
+			if (Left() <= R2.Right() && Right() >= R2.Left() && Top() >= R2.Bottom() && Bottom() <= R2.Top())
 				return true;
 			return false;
 		}

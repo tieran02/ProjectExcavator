@@ -1,6 +1,5 @@
 #include <Core/Scene_Management/Scene.h>
 #include <Rendering/SpriteBatch.h>
-#include "Core/Game.h"
 
 Scene::Scene(const char* name) {
 	this->m_sceneName = name;
@@ -8,7 +7,7 @@ Scene::Scene(const char* name) {
 
 void Scene::load() {
 	//Create b2world with earths gravity
-	b2Vec2 gravity(0.0, -9.81);
+	b2Vec2 gravity(0.0f, static_cast<float>(-M_GRAVITY));
 	m_world = std::make_unique<b2World>(gravity);
 
 	this->OnLoad();
@@ -16,8 +15,6 @@ void Scene::load() {
 	m_sceneGrapth.Awake();
 	m_sceneGrapth.Start();
 	this->m_startTime = Time::ElpasedTime;
-
-
 }
 
 void Scene::unload() {
@@ -27,7 +24,6 @@ void Scene::unload() {
 void Scene::update() {
 	//Update Components
 	this->OnUpdate();
-	m_sceneGrapth.Update();
 
 }
 
@@ -43,13 +39,12 @@ void Scene::fixedUpdate()
 void Scene::lateUpdate()
 {
 	this->OnLateUpdate();
-	m_sceneGrapth.LateUpdate();
 }
 
 void Scene::render() {
 	m_spriteBatch.Begin();
-	this->OnRender();
-	m_sceneGrapth.Render();
+	//Update Render LateUpdate for components
+	m_sceneGrapth.Update();
 	m_spriteBatch.End();
 	m_spriteBatch.Render();
 

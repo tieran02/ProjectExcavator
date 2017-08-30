@@ -1,6 +1,7 @@
 #include <Core/Components/GameObject.h>
 #include "Core/Components/Transform.h"
 #include "Debug/Debug.h"
+#include "Core/Components/ComponentManager.h"
 
 GameObject::GameObject()
 {
@@ -62,6 +63,7 @@ Component* GameObject::AddComponent(Component* componenet)
 	}
 
 	componenet->m_gameObject = this;
+	ComponentManager::Instance()->AddComponent(componenet);
 	this->m_components.push_back(componenet);
 	return this->m_components.back();
 
@@ -160,7 +162,7 @@ void GameObject::deleteComponents()
 {
 	for (auto it = this->m_components.begin(); it != this->m_components.end(); ++it)
 	{
-		delete *it;
+		ComponentManager::Instance()->RemoveComponent(*it);
 	}
 	this->m_components.clear();
 }

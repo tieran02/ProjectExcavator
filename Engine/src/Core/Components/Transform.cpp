@@ -5,7 +5,7 @@
 
 void Transform::Update()
 {
-	this->m_velocity = (this->m_position - this->m_lastPos) * (1.0f / Time::DeltaTime);
+	this->m_velocity = (this->m_position - this->m_lastPos) * (1.0f / static_cast<float>(Time::DeltaTime));
 
 	this->m_lastPos = m_position;
 }

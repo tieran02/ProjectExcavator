@@ -18,31 +18,27 @@ bool Input::KeyDown(int key) {
 }
 
 bool Input::KeyUp(int key) {
-    if(Instance()->m_state[key].currentState == STATE_RELEASE)
-        return true;
+	if (Instance()->m_state[key].currentState == STATE_RELEASE) {
+		Instance()->m_state[key].currentState = STATE_NONE;
+		return true;
+	}
 
 	return false;
 }
 
-void Input::SetState(int key, bool press) 
+void Input::SetState(int key, unsigned char action)
 {
-		Instance()->m_state[key].press = press;
-}
+	if ((Instance()->m_state[key].lastState == STATE_NONE || Instance()->m_state[key].lastState == STATE_RELEASE) && action == STATE_PRESS)
+		Instance()->m_state[key].currentState = STATE_PRESS;
+	if (Instance()->m_state[key].lastState == STATE_PRESS && action == STATE_DOWN)
+		Instance()->m_state[key].currentState = STATE_DOWN;
 
-void Input::Update()
-{
-	for (int i = 0; i < Instance()->m_state.size(); i++)
-	{
-		if (Instance()->m_state[i].lastState == STATE_NONE && Instance()->m_state[i].press)
-			Instance()->m_state[i].currentState = STATE_PRESS;
-		else if (Instance()->m_state[i].lastState == STATE_PRESS && Instance()->m_state[i].press)
-			Instance()->m_state[i].currentState = STATE_DOWN;
+	if (Instance()->m_state[key].lastState == STATE_DOWN && action == STATE_RELEASE)
+		Instance()->m_state[key].currentState = STATE_RELEASE;
+	if (Instance()->m_state[key].lastState == STATE_PRESS && action == STATE_RELEASE)
+		Instance()->m_state[key].currentState = STATE_RELEASE;
 
-		if(!Instance()->m_state[i].press && Instance()->m_state[i].lastState != STATE_RELEASE && Instance()->m_state[i].lastState != STATE_NONE)
-			Instance()->m_state[i].currentState = STATE_RELEASE;
-		else if(!Instance()->m_state[i].press && Instance()->m_state[i].lastState == STATE_RELEASE && Instance()->m_state[i].lastState != STATE_NONE)
-			Instance()->m_state[i].currentState = STATE_NONE;
 
-		Instance()->m_state[i].lastState = Instance()->m_state[i].currentState;
-	}
+
+	Instance()->m_state[key].lastState = action;
 }

@@ -2,11 +2,11 @@
 #include "Core/Time.h"
 #include <Core/Components/GameObject.h>
 
-SpriteAnimator::SpriteAnimator(Animation* animation, FLOAT fps) : m_animation(animation), m_sprite_renderer(nullptr), m_tick(0), m_speed(fps), m_currentIndex(animation->Start()), m_spriteIndex(0)
+SpriteAnimator::SpriteAnimator(Animation* animation, float fps) : m_animation(animation), m_sprite_renderer(nullptr), m_tick(0), m_speed(fps), m_currentIndex(animation->Start()), m_spriteIndex(0)
 {
 }
 
-SpriteAnimator::SpriteAnimator(): m_animation(nullptr), m_sprite_renderer(nullptr), m_tick(0), m_speed(0), m_currentIndex(0)
+SpriteAnimator::SpriteAnimator(): m_animation(nullptr), m_sprite_renderer(nullptr), m_tick(0), m_speed(0), m_currentIndex(0), m_spriteIndex(0)
 {
 }
 

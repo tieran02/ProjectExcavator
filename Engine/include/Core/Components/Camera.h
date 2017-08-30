@@ -1,6 +1,7 @@
 #pragma once
 #include <Core/Components/Transform.h>
 #include "GameObject.h"
+#include "Math/Rectangle.h"
 
 class Camera : public Component
 {
@@ -24,6 +25,8 @@ public:
 		m_size = size;
 		CreateProjectionMatrix(0, m_height * m_size, 0, m_width * m_size, m_near, m_far);
 	}
+
+	Math::Rectangle WorldBounds() const;
 
 private:
 	Matrix4 m_projectionMatrix;

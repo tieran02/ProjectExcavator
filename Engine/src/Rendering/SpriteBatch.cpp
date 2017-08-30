@@ -41,7 +41,7 @@ void SpriteBatch::Begin(SpriteSortType sortType) {
 void SpriteBatch::End() {
 	//create pointes to sprites in m_spritePointers vector
 	m_spritePointers.resize(m_sprites.size());
-	for (int i = 0; i < m_sprites.size(); i++)
+	for (unsigned int i = 0; i < m_sprites.size(); i++)
 	{
 		m_spritePointers[i] = &m_sprites[i];
 	}
@@ -61,7 +61,7 @@ void SpriteBatch::Render() {
 	if (shader != nullptr) {
 		glBindVertexArray(m_vao);
 
-		for (int i = 0; i < m_batches.size(); i++)
+		for (unsigned int i = 0; i < m_batches.size(); i++)
 		{
 			//Bind texture and shader
 			m_batches[i].Texture->Bind();
@@ -121,7 +121,7 @@ void SpriteBatch::createRenderBatches() {
 	verts[currentVert++] = Vertex((transform * Vector4(vertices[5].Pos.x / 2 * size.x, vertices[5].Pos.y / 2 * size.y, m_spritePointers[0]->Depth, 1)).XYZ(), uv[2], m_spritePointers[0]->Color.Normilized().Vec4());
 	offset += 6;
 
-	for (int i = 1; i < m_spritePointers.size(); i++)
+	for (unsigned int i = 1; i < m_spritePointers.size(); i++)
 	{	
 		transform = m_spritePointers[i]->Transform->TransformMatrix();
 		size = (Vector2(m_spritePointers[i]->Sprite->Width(), m_spritePointers[i]->Sprite->Height()) / m_spritePointers[i]->Sprite->PixlesPerUnit());

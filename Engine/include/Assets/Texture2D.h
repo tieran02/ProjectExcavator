@@ -11,8 +11,8 @@ public:
 	void Bind() const;
 	void Unbind() const;
 	GLuint GetTextureID() const { return m_texture_ID; }
-	float Height() const { return m_height; }
-	float Width() const { return m_width; }
+	const int& Height() const { return m_height; }
+	const int&  Width() const { return m_width; }
 private:
 	int m_width, m_height, m_nrChannels;
 	GLuint m_texture_ID;

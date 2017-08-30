@@ -21,7 +21,6 @@ void Camera::CreateProjectionMatrix(float bottom, float top, float left, float r
 
 void Camera::Awake()
 {
-	//CreateProjectionMatrix(0, Game::Instance()->GetWindow()->Height(), 0, Game::Instance()->GetWindow()->Width(), 0.1f, 1000.0f);
 }
 
 void Camera::Update()
@@ -36,5 +35,20 @@ void Camera::Update()
 void Camera::SetMain()
 {
 	MainCamera = this;
+}
+
+Math::Rectangle Camera::WorldBounds() const
+{
+	float Vert = this->m_size * (this->m_height * this->m_size);
+	float Horz = Vert * (static_cast<float>(Game::Instance()->GetWindow()->Width()) / static_cast<float>(Game::Instance()->GetWindow()->Height()));
+	Vector3 pos = GetGameObject().GetTransform().GetPosition();
+
+	Math::Rectangle bounds;
+	bounds.x = pos.x - Horz/2;
+	bounds.y = pos.y - Vert/2;
+	bounds.width = Horz;
+	bounds.height = Vert;
+
+	return bounds;
 }
 

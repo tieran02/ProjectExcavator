@@ -19,6 +19,7 @@ Asset* AssetManager::Add(Asset* asset)
 		asset->Load();
 		return asset;
 	}
+	return nullptr;
 }
 
 void AssetManager::Destroy()

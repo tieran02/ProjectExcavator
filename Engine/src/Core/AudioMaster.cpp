@@ -14,7 +14,7 @@ void AudioMaster::Create()
 
 	if (version < FMOD_VERSION)
 	{
-		LOG_ERROR("FMOD lib version %08x doesn't match header version %08x", version, FMOD_VERSION);
+		LOG_ERROR("FMOD lib version %08x doesn't match header version %08x" << version << FMOD_VERSION);
 	}
 
 	result = system->init(100, FMOD_INIT_NORMAL, extradriverdata);

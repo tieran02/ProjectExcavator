@@ -99,7 +99,6 @@ void SceneManager::RenderScene() const
 	if (this->m_currentScene != nullptr)
 	{
 		this->m_currentScene->render();
-		this->m_currentScene->lateUpdate();
 	}
 	else
 		LOG_ERROR("No current Scene");
@@ -121,17 +120,16 @@ Scene& SceneManager::GetCurrentScene() const
 	return *this->m_currentScene;
 }
 
-Scene& SceneManager::GetSceneFromSceneMap(const char* name)
+Scene* SceneManager::GetSceneFromSceneMap(const char* name)
 {
 	auto it = m_sceneMap.find(name);
 	if (it == m_sceneMap.end())
 	{
 		LOG_ERROR("Scene doesn't exit in scene map");
+		return nullptr;
 	}
-	else
-	{
-		return *it->second;
-	}
+
+	return it->second;
 }
 
 void SceneManager::addDefaultAssets()

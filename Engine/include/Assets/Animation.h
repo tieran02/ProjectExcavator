@@ -21,7 +21,8 @@ public:
 	std::vector<Sprite*> Sprites() const { return m_sprites; }
 
 private:
-	int m_start, m_end, m_rows, m_columns,m_pixlesPerUnit;
+	int m_start, m_end, m_rows, m_columns;
+	float m_pixlesPerUnit;
 	const char* m_name;
 	const char* m_textureName;
 	std::vector<Sprite*> m_sprites;

@@ -5,8 +5,8 @@ Sprite::Sprite(const char* name, const char* textureName, float pixlesPerUnit) :
 {
 	this->m_texture = static_cast<Texture2D*>(AssetManager::Instance()->Get(textureName));
 	this->m_region = SpriteRegion();
-	this->m_height = this->m_texture->Height();
-	this->m_width = this->m_texture->Width();
+	this->m_height = static_cast<float>(this->m_texture->Height());
+	this->m_width = static_cast<float>(this->m_texture->Width());
 }
 
 
@@ -14,8 +14,8 @@ Sprite::Sprite(const char* name, const char* textureName, SpriteRegion region, f
 {
 	this->m_texture = static_cast<Texture2D*>(AssetManager::Instance()->Get(textureName));
 	this->m_region = region;
-	this->m_height = this->m_texture->Height() / region.Columns();
-	this->m_width = this->m_texture->Width() / region.Rows();
+	this->m_height = static_cast<float>(this->m_texture->Height()) / region.Columns();
+	this->m_width = static_cast<float>(this->m_texture->Width()) / region.Rows();
 }
 
 

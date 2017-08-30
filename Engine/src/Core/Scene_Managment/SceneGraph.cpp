@@ -2,6 +2,7 @@
 
 SceneGraph::SceneGraph() : gameObjectCount(0)
 {
+	m_gameobjects.reserve(20000);
 }
 
 SceneGraph::~SceneGraph()
@@ -90,74 +91,32 @@ void SceneGraph::Destroy()
 
 void SceneGraph::Awake()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->Awake();
-		}
-	}
+	ComponentManager::Instance()->Awake();
 }
 
 void SceneGraph::Start()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->Start();
-		}
-	}
+	ComponentManager::Instance()->Start();
 }
 
 void SceneGraph::FixedUpdate()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->FixedUpdate();
-		}
-	}
+	ComponentManager::Instance()->FixedUpdate();
 }
 
 void SceneGraph::Update()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->Update();
-		}
-	}
+	ComponentManager::Instance()->Update();
 }
 
 void SceneGraph::LateUpdate()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->LateUpdate();
-		}
-	}
+
 }
 
 void SceneGraph::Render()
 {
-	for (auto it = this->m_gameobjects.begin(); it != this->m_gameobjects.end(); ++it)
-	{
-		GameObject* game_object = it->second;
-		for (auto it1 = game_object->Components().begin(); it1 != game_object->Components().end(); ++it1)
-		{
-			(*it1)->Render();
-		}
-	}
+
 }
 
 void SceneGraph::destroyGameobject(GameObject* gameObject)

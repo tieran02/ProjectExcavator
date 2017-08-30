@@ -21,7 +21,7 @@ struct Quaternion
         w = s;
     }
 
-    void EulerAngles(Vector3 vec, float radians);
+	static Quaternion EulerAngles(Vector3 vec, float radians);
 
     Matrix4 GetRotationMatrix(void);
     void SetRotationMatrix(const Matrix4& m);

@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainGame.cpp" />
-    <ClCompile Include="splashScreen.cpp" />
-    <ClCompile Include="testScene.cpp" />
+    <ClCompile Include="src\Scripts\World.cpp" />
+    <ClCompile Include="src\Scenes\GameScene.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mainGame.cpp" />
+    <ClCompile Include="src\Scenes\splashScreen.cpp" />
+    <ClCompile Include="src\Scenes\testScene.cpp" />
+    <ClCompile Include="src\Scripts\Tile.cpp" />
+    <ClCompile Include="src\Scripts\WorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -30,9 +34,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mainGame.h" />
-    <ClInclude Include="splashScreen.h" />
-    <ClInclude Include="testScene.h" />
+    <ClInclude Include="include\Scenes\GameScene.h" />
+    <ClInclude Include="include\mainGame.h" />
+    <ClInclude Include="include\Scenes\splashScreen.h" />
+    <ClInclude Include="include\Scenes\testScene.h" />
+    <ClInclude Include="include\Scripts\Item.h" />
+    <ClInclude Include="include\Scripts\World.h" />
+    <ClInclude Include="include\Scripts\Tile.h" />
+    <ClInclude Include="include\Scripts\WorldGenerator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\DiggerAnimation.png" />
+    <Image Include="res\splash.jpg" />
+    <Image Include="res\SpriteSheet.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -46,6 +60,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -86,11 +101,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\Engine\include;$(SolutionDir)\libs\include\debug;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Engine\include;$(SolutionDir)\Project Excavator\include;$(SolutionDir)\libs\include\debug;$(IncludePath);$(SolutionDir)\Project Excavator\include</IncludePath>
     <LibraryPath>$(SolutionDir)\Debug;$(SolutionDir)\libs\libs\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\Engine\include;$(SolutionDir)\libs\include\release;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\Engine\include;$(SolutionDir)\Project Excavator\include;$(SolutionDir)\libs\include\release;$(IncludePath);$(SolutionDir)\Project Excavator\include</IncludePath>
     <LibraryPath>$(SolutionDir)\Release;$(SolutionDir)\libs\libs\release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

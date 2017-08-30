@@ -2,6 +2,7 @@
 #include <Core/Input.h>
 #include <iostream>
 #include "Core/Components/Camera.h"
+#include <glad/glad.h>
 
 
 Window::Window() {
@@ -18,7 +19,7 @@ int Window::InitWindow(int width, int height, const char *title) {
     this->_height = height;
 
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4.5);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -70,7 +71,7 @@ void Window::framebuffer_size_callback(GLFWwindow *window, int width, int height
     // m_height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 	/*if(Camera::MainCamera != nullptr)
-		Camera::MainCamera->CreateProjectionMatrix(0, height, 0, width, 0.1f, 1000.0f);*/
+		Camera::MainCamera->CreateProjectionMatrix(0, m_height, 0, m_width, 0.1f, 1000.0f);*/
 }
 
 bool Window::ShouldClose() {
@@ -79,7 +80,9 @@ bool Window::ShouldClose() {
 
 void Window::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 	if(action == GLFW_PRESS)
-		Input::SetState(key , true);
+		Input::SetState(key , STATE_PRESS);
+	if (action == GLFW_REPEAT)
+		Input::SetState(key, STATE_DOWN);
 	if (action == GLFW_RELEASE)
-		Input::SetState(key, false);
+		Input::SetState(key, STATE_RELEASE);
 }

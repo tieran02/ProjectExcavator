@@ -23,7 +23,7 @@ public:
     void Destroy();
 
     Scene& GetCurrentScene() const;
-    Scene& GetSceneFromSceneMap(const char* name);
+    Scene* GetSceneFromSceneMap(const char* name);
 
 private:
     Scene* m_currentScene;

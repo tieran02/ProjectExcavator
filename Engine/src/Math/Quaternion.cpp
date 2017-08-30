@@ -67,10 +67,12 @@ void Quaternion::SetRotationMatrix(const Matrix4 &m) {
     }
 }
 
-void Quaternion::EulerAngles(Vector3 vec, float radians) {
+Quaternion Quaternion::EulerAngles(Vector3 vec, float radians) {
     float s = sinf(radians/2);
-     x = vec.x * s;
-     y = vec.y * s;
-     z = vec.z * s;
-     w = cosf(radians/2);
+	Quaternion q;
+     q.x = vec.x * s;
+	 q.y = vec.y * s;
+	 q.z = vec.z * s;
+	 q.w = cosf(radians/2);
+	 return q;
 }

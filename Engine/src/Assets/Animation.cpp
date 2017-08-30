@@ -17,7 +17,7 @@ Animation::~Animation()
 
 void Animation::Load()
 {
-	for (int i = 0; i < this->m_sprites.size(); i++)
+	for (unsigned int i = 0; i < this->m_sprites.size(); i++)
 	{
 		std::string name = this->m_name;
 		name.append(std::to_string(i));

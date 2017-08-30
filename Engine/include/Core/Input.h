@@ -4,7 +4,6 @@
 
 struct InputState
 {
-	bool press;
 	unsigned char currentState;
 	unsigned char lastState;
 };
@@ -14,8 +13,7 @@ public:
     static bool KeyPress(int key);
     static bool KeyDown(int key);
     static bool KeyUp(int key);
-    static void SetState(int key, bool press);
-	static void Update();
+    static void SetState(int key, unsigned char action);
 
     static Input* Instance(){
 		if (!_instance)

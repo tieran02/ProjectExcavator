@@ -1,21 +1,30 @@
 #include <Core/Components/SpriteRenderer.h>
 #include "Core/Components/GameObject.h"
+#include "Core/Components/Camera.h"
+#include "Core/Scene_Management/SceneManager.h"
 
-SpriteRenderer::SpriteRenderer(SpriteBatch* spriteBatch, Sprite* sprite) : Component("SpriteRenderer", true), m_depth(-1), m_color(255, 255, 255, 255)
+SpriteRenderer::SpriteRenderer( Sprite* sprite) : Component("SpriteRenderer", true), m_depth(-1), m_color(255, 255, 255, 255)
 {
-	this->m_spriteBatch = spriteBatch;
+	this->m_spriteBatch = SceneManager::Instance()->GetCurrentScene().GetSpriteBatch();
 	this->m_sprite = sprite;
 }
 
-SpriteRenderer::SpriteRenderer(SpriteBatch* spriteBatch) : Component("SpriteRenderer", true), m_depth(-1), m_color(255,255,255,255)
+SpriteRenderer::SpriteRenderer() : Component("SpriteRenderer", true), m_depth(-1), m_color(255,255,255,255)
 {
-	this->m_spriteBatch = spriteBatch;
+	this->m_spriteBatch = SceneManager::Instance()->GetCurrentScene().GetSpriteBatch();
 }
 
 void SpriteRenderer::Render()
 {
-	if(this->m_sprite != nullptr)
-		this->m_spriteBatch->Draw(m_sprite, m_depth, &GetGameObject().GetTransform(), m_color);
+	if (this->m_sprite != nullptr)
+	{
+		Vector3 pos = GetGameObject().GetTransform().GetPosition();
+		Math::Rectangle bounds = Math::Rectangle(pos.x, pos.y, 1, 1);
+		Math::Rectangle cam = Camera::MainCamera->WorldBounds();
+		
+		if(cam.Overlap(bounds))
+			this->m_spriteBatch->Draw(m_sprite, m_depth, &GetGameObject().GetTransform(), m_color);
+	}
 }
 
 void SpriteRenderer::SetSprite(Sprite* sprite)

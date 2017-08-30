@@ -23,6 +23,7 @@
     <ClCompile Include="src\Core\AudioMaster.cpp" />
     <ClCompile Include="src\Core\Components\AudioListener.cpp" />
     <ClCompile Include="src\Core\Components\AudioSource.cpp" />
+    <ClCompile Include="src\Core\Components\ComponentManager.cpp" />
     <ClCompile Include="src\Core\Components\RigidBody.cpp" />
     <ClCompile Include="src\Core\Components\SpriteAnimator.cpp" />
     <ClCompile Include="src\Debug.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="include\Core\Components\AudioListener.h" />
     <ClInclude Include="include\Core\Components\AudioSource.h" />
     <ClInclude Include="include\Core\Components\Component.h" />
+    <ClInclude Include="include\Core\Components\ComponentManager.h" />
     <ClInclude Include="include\Core\Components\GameObject.h" />
     <ClInclude Include="include\Core\Components\RigidBody.h" />
     <ClInclude Include="include\Core\Components\SpriteAnimator.h" />
@@ -70,6 +72,7 @@
     <ClInclude Include="include\Core\Window.h" />
     <ClInclude Include="include\Debug\Debug.h" />
     <ClInclude Include="include\Core\Components\Camera.h" />
+    <ClInclude Include="include\Engine.h" />
     <ClInclude Include="include\Math\Math.h" />
     <ClInclude Include="include\Math\Matrix3.h" />
     <ClInclude Include="include\Math\Matrix4.h" />
@@ -103,6 +106,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>

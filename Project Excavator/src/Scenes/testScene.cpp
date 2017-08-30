@@ -86,11 +86,11 @@ void testScene::OnUpdate()
 		audio_source->Stop();
 	}
 
-	if (Input::KeyPress(KEY_3))
+	if (Input::KeyDown(KEY_3))
 	{
 		glfwSwapInterval(0);
 	}
-	if (Input::KeyPress(KEY_4))
+	if (Input::KeyDown(KEY_4))
 	{
 		glfwSwapInterval(1);
 	}
